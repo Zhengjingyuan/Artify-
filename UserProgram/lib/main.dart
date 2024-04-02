@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:userprogram/util/size_fit.dart';
 import 'common/Routes.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +17,7 @@ class MyApp extends StatefulWidget{
 class _MyAppState extends State<MyApp>{
   @override
   Widget build(BuildContext context){
+    HYSizeFit.initialize();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.splashRoute,

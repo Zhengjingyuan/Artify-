@@ -45,14 +45,21 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.white,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.purple[300]!, Colors.purple[700]!],
+          ),
+        ),
         child: Center(
           child: AnimatedOpacity(
             duration: Duration(seconds: 2),
             opacity: _opacity,
             child: Text(
-              'Artify+',
+              '藏境',
               style: TextStyle(
+                color: Colors.white,
                 fontSize: 30.0,
                 fontFamily: 'Roboto',
                 fontWeight: FontWeight.bold,

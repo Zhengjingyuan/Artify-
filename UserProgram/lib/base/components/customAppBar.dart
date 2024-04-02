@@ -12,35 +12,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Row(
-        children: <Widget>[
-          FlutterLogo(size: 30.0),
-          SizedBox(width: 10.0),
-          Expanded(
-            child: Container(
-              height: 50.0,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search...',
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-                ),
-              ),
-            ),
-          ),
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              // 在此处处理搜索逻辑
-            },
-          ),
-
-        ],
+      backgroundColor: Colors.white,
+      elevation: 0, // 阴影
+      leading: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Image.asset('lib/assert/profile.png', width: 40, height: 40), // 左侧logo，需替换为实际logo的路径
       ),
+      actions: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CircleAvatar(
+            backgroundImage: AssetImage('lib/assert/profile.png'), // 右侧头像，需替换为实际头像的路径
+          ),
+        ),
+      ],
     );
   }
 }

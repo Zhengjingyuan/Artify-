@@ -137,4 +137,84 @@ class Http {
     }
   }
 
+  Future<void> getOnChain(String endpoint, Map<String, dynamic?> data,
+      {void Function(dynamic)? success, void Function(String, int)? fail, void Function()? after}) async {
+    try {
+      final response = await _dio.get(
+        endpoint,
+        data: jsonEncode(data),
+        options: Options(headers: headers),
+      );
+      if (response.statusCode == 200) {
+        if (success != null) {
+          success(response.data);
+        }
+      } else {
+        if (fail != null) {
+          fail(response.statusMessage ?? '', response.statusCode ?? 0);
+        }
+      }
+      if (after != null) {
+        after();
+      }
+    } catch (e) {
+      if (fail != null) {
+        fail(e.toString(), 500); // You can customize the status code here
+      }
+    }
+  }
+
+  Future<void> getCreateGood(String endpoint, Map<String, dynamic?> data,
+      {void Function(dynamic)? success, void Function(String, int)? fail, void Function()? after}) async {
+    try {
+      final response = await _dio.get(
+        endpoint,
+        data: jsonEncode(data),
+        options: Options(headers: headers),
+      );
+      if (response.statusCode == 200) {
+        if (success != null) {
+          success(response.data);
+        }
+      } else {
+        if (fail != null) {
+          fail(response.statusMessage ?? '', response.statusCode ?? 0);
+        }
+      }
+      if (after != null) {
+        after();
+      }
+    } catch (e) {
+      if (fail != null) {
+        fail(e.toString(), 500); // You can customize the status code here
+      }
+    }
+  }
+
+  Future<void> getMyGood(String endpoint, int userId,int page,int size,
+      {void Function(dynamic)? success, void Function(String, int)? fail, void Function()? after}) async {
+    try {
+      final response = await _dio.get(
+        endpoint,
+          queryParameters: {'userId': userId,'page':page,'size':size},
+        options: Options(headers: headers),
+      );
+      if (response.statusCode == 200) {
+        if (success != null) {
+          success(response.data);
+        }
+      } else {
+        if (fail != null) {
+          fail(response.statusMessage ?? '', response.statusCode ?? 0);
+        }
+      }
+      if (after != null) {
+        after();
+      }
+    } catch (e) {
+      if (fail != null) {
+        fail(e.toString(), 500); // You can customize the status code here
+      }
+    }
+  }
 }

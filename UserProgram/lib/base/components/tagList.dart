@@ -146,9 +146,9 @@ class Card2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CarouselSliderDemo(
-      image1: 'https://up.enterdesk.com/edpic/b4/7b/a5/b47ba546a5d0e0859417061cd419ce38.jpg',
-      image2: 'https://up.enterdesk.com/edpic/b4/7b/a5/b47ba546a5d0e0859417061cd419ce38.jpg',
-      image3: 'https://up.enterdesk.com/edpic/b4/7b/a5/b47ba546a5d0e0859417061cd419ce38.jpg',
+      image1: 'https://img0.baidu.com/it/u=2903024503,3194874901&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500',
+      image2: 'https://img0.baidu.com/it/u=2903024503,3194874901&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500',
+      image3: 'https://img0.baidu.com/it/u=2903024503,3194874901&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500',
     );
   }
 }

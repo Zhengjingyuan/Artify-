@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:userprogram/base/components/createNavBar.dart';
 import 'package:userprogram/base/components/tagList.dart';
-import 'package:userprogram/view/homeView/creatViews/creat_good_page.dart';
+import 'package:userprogram/view/homeView/creatViews/create_page1.dart';
+import 'package:userprogram/view/homeView/creatViews/create_page2.dart';
 
 /**
  * 孵化池页面
@@ -11,63 +13,39 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
+  int _selectedIndex = 0;
+  void _onTabSelected(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 2, // 设置两个tab
-        child: Scaffold(
-          appBar: AppBar(
-            title:Column(
-                children: [
-            TabBar(
-            tabs: [
-            Tab(text: '孵化大厅'),
-            Tab(text: '创作台'),
-            ],
-          ),]
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('lib/assert/bk.png'), // 替换成你想要设置的背景图片路径
+            fit: BoxFit.cover, // 适应容器大小，可以根据需求调整
           ),
-      ),
-          body: TabBarView(
-            children: [
-              Page1(),
-              Page2(),
-            ],
-          ),
+        ),
+        child: Column(
+          children: [
+            SizedBox(height: 20,),
+            Container(
+              height: 60, // 设置导航栏高度为80
+              child: CreateNavBar(
+                selectedIndex: _selectedIndex,
+                onTabSelected: _onTabSelected,
+              ),
+            ),
+            Expanded(
+              child: _selectedIndex == 0 ? CreatePage1() : CreatePage2(),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-/**
- * 孵化大厅
- */
-class Page1 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-     children: [
-       Container(
-         child: Column(
-           children: [
-             TagList(),
-              CreateGoodPage(),
-           ],
-         )
-       )
-     ],
-    );
-  }
-}
-
-/**
- * 创作台
- */
-class Page2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('内容2'),
-    );
-  }
-}

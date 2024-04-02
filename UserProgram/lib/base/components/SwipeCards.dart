@@ -11,13 +11,12 @@ class CarouselCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
-      height: 200.0, // 添加固定高度作为约束
+      height: 200.0,
       child: CarouselSlider(
         options: CarouselOptions(
-          height: 400.0,
+          height: 180.0,
           aspectRatio: 16 / 9,
-          viewportFraction: 0.8,
+          viewportFraction: 0.7,
           initialPage: 0,
           enableInfiniteScroll: true,
           reverse: false,
@@ -28,11 +27,12 @@ class CarouselCard extends StatelessWidget {
           enlargeCenterPage: true,
           scrollDirection: Axis.horizontal,
         ),
-        items: cardList
-            .map((item) => Container(
-          child: item,
-        ))
-            .toList(),
+        items: cardList.map((item) {
+          return ClipRRect( // 只在这里添加ClipRRect，移除Container
+            borderRadius: BorderRadius.circular(32.0),
+            child: item,
+          );
+        }).toList(),
       ),
     );
   }

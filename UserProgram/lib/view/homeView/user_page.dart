@@ -1,116 +1,220 @@
 import 'package:flutter/material.dart';
-import 'package:userprogram/base/provider_widget.dart';
-import 'package:userprogram/common/Routes.dart';
-import 'package:userprogram/view/home_page.dart';
-import 'package:userprogram/viewmodel/getUser_viewmodel.dart';
-/**
- * 个人中心页面
- */
+import 'package:userprogram/model/home_good/onchain_bean.dart';
+import 'package:userprogram/view/homeView/myViews/mycollection_detail_page.dart';
+import 'package:userprogram/view/homeView/transactionViews/requirement_page.dart';
+
 
 class UserPage extends StatefulWidget {
+  const UserPage({super.key});
+
   @override
   _UserPageState createState() => _UserPageState();
 }
 
+
 class _UserPageState extends State<UserPage> {
+
+  List<OnChainGood> onChainGoodList = [
+    OnChainGood(
+      blockchainAddress: "blockchainAddress2",
+      category: "category2",
+      commentsNum: 5,
+      createdAt: "2022-02-01",
+      creator: 2,
+      description: "description2",
+      hotValue: 50,
+      id: 2,
+      imageUrl: "lib/assert/source_6.png",
+      isOnChain: false,
+      likeNum: 10,
+      name: "name2",
+      onChainTime: "2022-02-02",
+      owner: 2,
+      price: 5.5,
+      quantity: 2,
+      type: 2,
+      updatedAt: "2022-02-03",
+    ),
+    OnChainGood(
+      blockchainAddress: "blockchainAddress1",
+      category: "category1",
+      commentsNum: 10,
+      createdAt: "2022-01-01",
+      creator: 1,
+      description: "description1",
+      hotValue: 100,
+      id: 1,
+      imageUrl: "lib/assert/source_1.png",
+      isOnChain: true,
+      likeNum: 20,
+      name: "name1",
+      onChainTime: "2022-01-02",
+      owner: 1,
+      price: 10.5,
+      quantity: 1,
+      type: 1,
+      updatedAt: "2022-01-03",
+    ),
+    // 继续添加其他实例...
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return ProviderWidget<GetUserViewMode>(
-      model: GetUserViewMode(), // 实例化你的ViewModel
-      onReady: (model) async {
-        String? id = await loginViewModel.storage.read(key: 'token');
-        if (id != null) {
-          int? userId = int.tryParse(id);
-          if (userId != null) {
-            await model.getUser(userId); // Make sure to await for the getUser method
-          } else {
-            // 处理无法将id解析为整数的情况
-            print('Error: Unable to parse id to integer');
-          }
-        } else {
-          // 处理id为null的情况
-          print('Error: id is null');
-        }
-      },
-      builder: (context, model, child) {
-        return Scaffold(
-          body: ListView(
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('lib/assert/bk.png'), // 替换成你想要设置的背景图片路径
+          fit: BoxFit.cover, // 适应容器大小，可以根据需求调整
+        ),
+      ),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 80,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              ListTile(
-                contentPadding: EdgeInsets.all(8.0),
-                leading: CircleAvatar(
-                  radius: 60,
-                  backgroundImage: model.getuser.headImg!= null
-                      ? Image.network(model.getuser.headImg as String).image
-                      : AssetImage('lib/assert/profile.png'),
-
-                ),
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(model.getuser.nickName ?? '创作家0001', style: TextStyle(fontSize: 24)),
-                    ElevatedButton(
-                      onPressed: () {
-                        // 点击编辑资料按钮触发的操作
-                        Navigator.pushReplacementNamed(context, Routes.updateRoute);
-                      },
-                      style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(100, 30)),
-                      ),
-                      child: Text('编辑资料', style: TextStyle(fontSize: 12)),
-                    ),
-                  ],
+              Text('Welcome , soroushnrz',style: TextStyle(color: Color(0xFFD9AAFF),fontSize: 14,fontWeight: FontWeight.bold),),
+              ClipOval(
+                child: Image.asset(
+                  'lib/assert/profile.png',
+                  width: 60,
+                  height: 60,
                 ),
               ),
-              _buildListItem(Icons.person, '个人主页', () {
-                // 点击跳转到个人主页
-                // TODO: 添加跳转逻辑
-              }),
-              _buildListItem(Icons.shopping_cart, '订单', () {
-                // 点击跳转到订单页面
-                // TODO: 添加跳转逻辑
-              }),
-              _buildListItem(Icons.collections, '藏品管理', () {
-                // 点击跳转到藏品管理页面
-                // TODO: 添加跳转逻辑
-              }),
-              _buildListItem(Icons.favorite, '收藏', () {
-                // 点击跳转到收藏页面
-                // TODO: 添加跳转逻辑
-              }),
-              _buildListItem(Icons.comment, '获得的评论', () {
-                // 点击跳转到获得的评论页面
-                // TODO: 添加跳转逻辑
-              }),
-              _buildListItem(Icons.thumb_up, '点赞', () {
-                // 点击跳转到点赞页面
-                // TODO: 添加跳转逻辑
-              }),
-              _buildListItem(Icons.thumb_up, '登出', () {
-
-                loginViewModel.logout();
-                Navigator.pushReplacementNamed(context, Routes.loginRoute);
-
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => UserUpdatePage(user: model.getuser),
-                //   ),
-                // );
-
-              }),
             ],
           ),
-        );
-      }, child: Container(),
-    );
-  }
-  Widget _buildListItem(IconData icon, String text, VoidCallback onTap) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(text),
-      onTap: onTap,
-    );
-  }
+          SizedBox(height: 20,),
+          Container(
+            height: 80,
+            margin: EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.white12,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child:Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.star,color: Colors.white.withOpacity(0.7),),
+                      Text('收藏',style: TextStyle(color: Colors.white))
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.comment,color: Colors.white.withOpacity(0.7),),
+                      Text('评论',style: TextStyle(color: Colors.white),)
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.account_balance_wallet_outlined,color: Colors.white.withOpacity(0.7),),
+                      Text('订单',style: TextStyle(color: Colors.white))
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.settings,color: Colors.white.withOpacity(0.7),),
+                      Text('设置',style: TextStyle(color: Colors.white))
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: 30,),
+              Text('我的藏品',style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),)
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 1,
+            color: Colors.white12,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Expanded(
+              child:CustomScrollView(
+                slivers: [
+                  SliverPadding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      sliver: SliverGrid(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 16.0,
+                            mainAxisSpacing: 16.0,
+                            childAspectRatio: 0.75, // 控制宽高比例，根据实际情况调整
+                            mainAxisExtent: 210
+                        ),
+                        delegate: SliverChildBuilderDelegate(
+                              (context, index) {
+                                var product = onChainGoodList[index];
+                            return GestureDetector(
+                              onTap: (){
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => CollectionDetailPage(product),)
+                                );
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(8.0),
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Color(0xFFEBEBF5).withOpacity(0.2)),
+                                  color: Colors.purple.withOpacity(0.2),
+                                  borderRadius: BorderRadius.circular(24.0),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: double.infinity,
+                                      height: 145,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius: BorderRadius.circular(24.0),
+                                        image: DecorationImage(
+                                          image: AssetImage(product.imageUrl!),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 14.0),
+                                    Text(product.name!, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
 
+
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                          childCount: onChainGoodList.length,
+                        ),
+
+                      )
+                  ),
+                ],
+              )
+          ),
+
+
+        ],
+      ),
+    );
+  }
 }

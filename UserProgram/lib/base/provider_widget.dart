@@ -26,6 +26,7 @@ class _ProviderWidgetState<T extends ChangeNotifier>
     if (widget.onReady != null) {
       widget.onReady(widget.model);
     }
+
   }
 
   @override

@@ -1,15 +1,16 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:userprogram/base/provider_widget.dart';
-import 'package:userprogram/common/Routes.dart';
+import 'package:userprogram/base/components/NavBarItem.dart';
+import 'package:userprogram/util/int_extention.dart';
+import 'package:userprogram/util/size_fit.dart';
 import 'package:userprogram/view/default_page.dart';
 import 'package:userprogram/view/homeView/good_page.dart';
 import 'package:userprogram/view/homeView/create_page.dart';
 import 'package:userprogram/view/homeView/transaction_page.dart';
 import 'package:userprogram/view/homeView/user_page.dart';
-import 'package:userprogram/view/userUpdate_page.dart';
 import 'package:userprogram/viewmodel/getUser_viewmodel.dart';
 import 'package:userprogram/viewmodel/login_viewmodel.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 /**
  * 基础导航栏架构页面
@@ -48,31 +49,60 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
-      body: AnimatedSwitcher(
-        duration: Duration(milliseconds: 500),
-        child: _buildPage(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        selectedItemColor: Colors.grey,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '首页',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: '孵化池',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: '流转中心',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: '个人中心',
+      resizeToAvoidBottomInset: false, // 解决键盘顶起页面
+      body: Stack(
+        children: [
+          _buildPage(_selectedIndex),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child:Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('lib/assert/Rectangle 23.png'), // 替换成你想要设置的背景图片路径
+                    fit: BoxFit.fill, // 适应容器大小，可以根据需求调整
+                  ),
+                  color: Colors.transparent,
+
+              ),
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  NavBarItem(
+                    iconPath: _selectedIndex == 0 ? 'lib/assert/Home 1.png' : 'lib/assert/Home 2.png',
+                    title: '首页',
+                    index: 0,
+                    onTabTapped: _onItemTapped,
+                  ),
+                  SizedBox(width: 4.rpx,),
+                  NavBarItem(
+                    iconPath: _selectedIndex == 1 ? 'lib/assert/tabler_eggs2.png' : 'lib/assert/tabler_eggs.png',
+                    title: '孵化池',
+                    index: 1,
+                    onTabTapped: _onItemTapped,
+                  ),
+                  SizedBox(width: 20.rpx,),
+                  NavBarItem(
+                    iconPath: _selectedIndex == 2 ? 'lib/assert/Group 43015.png' : 'lib/assert/material-symbols-light_swap-calls.png',
+                    title: '流转中心',
+                    index: 2,
+                    onTabTapped: _onItemTapped,
+                  ),
+                  NavBarItem(
+                    iconPath: _selectedIndex == 3 ? 'lib/assert/Profile 2.png' : 'lib/assert/Profile 1.png',
+                    title: '个人中心',
+                    index: 3,
+                    onTabTapped: _onItemTapped,
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
@@ -93,3 +123,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 }
+
+
+
