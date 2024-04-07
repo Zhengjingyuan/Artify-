@@ -217,15 +217,66 @@ class _OnChainDetailPageState extends State<OnChainDetailPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // 左边是价格
                       Text(
-                        _product.price.toString(),
+                        '￥${_product.price.toString()}',
                         style: TextStyle(color:Colors.white,fontSize: 16, fontWeight: FontWeight.bold),
                       ),
-                      // 右边是购买文字按钮
                       TextButton(
                         onPressed: () {
-                          // 购买按钮点击事件处理逻辑
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 240,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFF201537),
+                                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                          Container(
+                                          padding: EdgeInsets.symmetric(vertical: 4,horizontal: 12),
+                                          margin: EdgeInsets.all(16),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white.withOpacity(0.4),
+                                            borderRadius: BorderRadius.circular(10),
+                                            border: Border.all(color: Colors.white, width: 1),
+                                          ),
+                                          child: Text(
+                                            '1份',
+                                            style: TextStyle(fontSize: 20),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 20),
+                                    Text('￥${_product.price.toString()}', style: TextStyle(color: Colors.white, fontSize: 24),),
+                                    OutlinedButton(
+                                      onPressed: () {
+                                        // 实现购买逻辑
+                                      },
+                                      style: OutlinedButton.styleFrom(
+                                        side: BorderSide(color: Colors.white),
+                                        backgroundColor: Colors.black,
+                                      ),
+                                      child: Text(
+                                        '立即购买',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
                         },
                         style: ButtonStyle(
                           minimumSize: MaterialStateProperty.all(Size(0, 0)), // 设置按钮大小为0，避免默认最小大小

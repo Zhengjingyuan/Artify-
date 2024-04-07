@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:userprogram/common/Routes.dart';
 import 'package:userprogram/util/int_extention.dart';
 import 'package:userprogram/util/size_fit.dart';
+import 'package:userprogram/view/homeView/creatViews/create_ai_page.dart';
 import 'package:userprogram/view/homeView/creatViews/create_original_page.dart';
+import 'package:userprogram/viewmodel/prompt_viewmodel.dart';
 
 class CreatePage2 extends StatefulWidget {
 
@@ -14,7 +18,39 @@ class CreatePage2 extends StatefulWidget {
 class _CreatePage2State extends State<CreatePage2> {
   double containerHeight = 80.rpx;
   bool isExpanded = false;
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController prtextController=TextEditingController();
+
+  PromptViewModel promptViewModel=PromptViewModel();
+  String? generatedImage;
+  bool isGeneratingImage = false;
+  Timer? imageGenerationTimer;
+  void startImageGenerationTimer() {
+    const Duration pollInterval = Duration(seconds: 1); // 每秒轮询一次
+    imageGenerationTimer = Timer.periodic(pollInterval, (timer) {
+      // 检查是否生成图片完成
+      if (promptViewModel.isImageString) {
+        generatedImage = promptViewModel.imageString;
+        cancelImageGenerationTimer(); // 取消定时器
+        setState(() {});
+      }
+    });
+  }
+  void cancelImageGenerationTimer() {
+    imageGenerationTimer?.cancel();
+    imageGenerationTimer = null;
+  }
+  void generateImage() {
+    String prtext=prtextController.text;
+    debugPrint('prtext: $prtext');
+    promptViewModel.postPrompt(prtext);
+    startImageGenerationTimer();
+  }
+
+  @override
+  void dispose() {
+    cancelImageGenerationTimer();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +62,7 @@ class _CreatePage2State extends State<CreatePage2> {
     print("屏幕宽高: $width * $height");
     print("状态栏的高度: $statusHeight");
     print(HYSizeFit.screenWidth);
+
 
     void _toggleTextField() {
       setState(() {
@@ -82,6 +119,7 @@ class _CreatePage2State extends State<CreatePage2> {
                               ),
                             ),
                           TextField(
+                            controller: prtextController,
                             style: TextStyle(color: Colors.white.withOpacity(0.7)),
                             decoration: InputDecoration(
                               hintText: '请对你所期望的NFT作品效果进行描述..',
@@ -195,7 +233,23 @@ class _CreatePage2State extends State<CreatePage2> {
                     padding: EdgeInsets.only(right: 24.rpx), // 设置右侧间距为20.0
                     child: ElevatedButton(
                       onPressed: () {
-                        // 按钮点击事件
+                        if(prtextController.text.isNotEmpty){
+                             generateImage();
+
+                          if( generatedImage != null){
+                            debugPrint('image:$generatedImage');
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => CreateAIPage('$generatedImage')),
+                            );
+                          }
+                        }else{
+                          debugPrint('null');
+                        }
+
+
+
                       },
                       style: ButtonStyle(
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -207,6 +261,7 @@ class _CreatePage2State extends State<CreatePage2> {
                         padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 5.rpx, horizontal: 20.rpx)), // 设置按钮内边距
                       ),
                       child: Text('生成作品', style: TextStyle(color: Colors.white)),
+
                     ),
                   ),
                 )
@@ -360,145 +415,11 @@ class _CreatePage2State extends State<CreatePage2> {
     );
   }
 
-  Widget unExpandedTextFleid(){
-    void expandTextField() {
-      setState(() {
-        isExpanded = true;
-      });
-    }
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 24.rpx),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        color: Colors.white.withOpacity(0.3),
-        border: Border.all(color: Colors.white.withOpacity(0.7)),
-      ),
-      child: TextField(
-        style: TextStyle(color: Colors.white.withOpacity(0.7)),
-        decoration: InputDecoration(
-          hintText: '请对你所期望的NFT作品效果进行描述..',
-          hintStyle: TextStyle(color: Colors.white.withOpacity(0.5),fontSize: 14.rpx),
-          border: InputBorder.none, // 隐藏输入框默认边框
-          contentPadding: EdgeInsets.symmetric(horizontal: 8.rpx), // 设置内边距
-        ),
-        onTap: () {
-          expandTextField(); // 点击输入框时展开
-        },
-      ),
 
-    );
-  }
 
-  Widget unExpandedBox(){
-    return Container(
-      child: Column(
-        children: [
-          Container(
-              margin: EdgeInsets.fromLTRB(24.rpx, 24.rpx, 24.rpx, 10.rpx),
-              height: 100.rpx,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6.0),
-                  color: Colors.white.withOpacity(0.1),
-                  border: Border.all(color: Colors.white.withOpacity(0.1))
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(16.rpx), // 添加padding
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                        'lib/assert/icon_blub.png',
-                        width: 25.rpx,
-                        height: 25.rpx),
-                    SizedBox(width: 10.rpx),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '一只黄色的长颈鹿',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          '坐在一张蓝色的椅子上',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              )
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 24.rpx),
-            child: Row(
-              children: [
-                Container(
-                    height: 48.rpx,
-                    width: 160.rpx,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        color: Colors.white.withOpacity(0.1),
-                        border: Border.all(color: Colors.white.withOpacity(0.1))
-                    ),
-                    child: Center(
-                      child: Text('🦒一只黄色的长颈鹿',style: TextStyle(color: Colors.white)),
-                    )
-                ),
-                SizedBox(width: 16.rpx), // 添加间距
-                Container(
-                    height: 48.rpx,
-                    width: 48.rpx,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        color: Colors.white.withOpacity(0.1),
-                        border: Border.all(color: Colors.white.withOpacity(0.1))
-                    ),
-                    child: Center(
-                      child: Text('坐在',style: TextStyle(color: Colors.white)),
-                    )
-                ),
-                SizedBox(width: 16.rpx), // 添加间距
-                Container(
-                    height: 45.rpx,
-                    width: 120.rpx,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        color: Colors.white.withOpacity(0.1),
-                        border: Border.all(color: Colors.white.withOpacity(0.1))
-                    ),
-                    child: Center(
-                      child: Text('💺蓝色的椅子',style: TextStyle(color: Colors.white)),
-                    )
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
 
-  Widget ExpandedTextFleid(){
-    return AnimatedContainer(
-      height: 317.rpx,
-      margin: EdgeInsets.symmetric(horizontal: 24.rpx),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        color: Colors.white.withOpacity(0.3),
-        border: Border.all(color: Colors.white.withOpacity(0.7)),
-      ),
-      duration: Duration(milliseconds: 300),
-      child: TextField(
-        style: TextStyle(color: Colors.white.withOpacity(0.7)),
-        decoration: InputDecoration(
-          hintText: '请对你所期望的NFT作品效果进行描述..',
-          hintStyle: TextStyle(color: Colors.white.withOpacity(0.5),fontSize: 14.rpx),
-          border: InputBorder.none, // 隐藏输入框默认边框
-          contentPadding: EdgeInsets.symmetric(horizontal: 8.rpx), // 设置内边距
-        ),
-      ),
-    );
-  }
+
+
+
+
 }

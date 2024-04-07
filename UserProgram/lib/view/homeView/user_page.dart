@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:userprogram/base/components/animateicon.dart';
 import 'package:userprogram/model/home_good/onchain_bean.dart';
+import 'package:userprogram/view/homeView/myViews/comment_page.dart';
 import 'package:userprogram/view/homeView/myViews/mycollection_detail_page.dart';
+import 'package:userprogram/view/homeView/myViews/set_page.dart';
+import 'package:userprogram/view/homeView/myViews/star_page.dart';
+import 'package:userprogram/view/homeView/myViews/tran_record_page.dart';
 import 'package:userprogram/view/homeView/transactionViews/requirement_page.dart';
 
 
@@ -16,7 +21,7 @@ class _UserPageState extends State<UserPage> {
 
   List<OnChainGood> onChainGoodList = [
     OnChainGood(
-      blockchainAddress: "blockchainAddress2",
+      blockchainAddress: "AC16386#18793/6199",
       category: "category2",
       commentsNum: 5,
       createdAt: "2022-02-01",
@@ -36,7 +41,7 @@ class _UserPageState extends State<UserPage> {
       updatedAt: "2022-02-03",
     ),
     OnChainGood(
-      blockchainAddress: "blockchainAddress1",
+      blockchainAddress: "AC#F2CD18793/3329",
       category: "category1",
       commentsNum: 10,
       createdAt: "2022-01-01",
@@ -75,7 +80,27 @@ class _UserPageState extends State<UserPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text('Welcome , soroushnrz',style: TextStyle(color: Color(0xFFD9AAFF),fontSize: 14,fontWeight: FontWeight.bold),),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('欢迎，艺术探索者..',style: TextStyle(color: Color(0xFFD9AAFF),fontSize: 18,fontWeight: FontWeight.bold),),
+                  SizedBox(height: 10,),
+                  Row(
+                    children: [
+                      Image.asset('lib/assert/区块链.png',width: 16,height: 16,),
+                      SizedBox(width: 5,),
+                      Text(
+                        '区块链地址：daf35e4ff6555dbf172af...',
+                        style: TextStyle(color: Colors.grey.withOpacity(0.6),
+                          fontSize: 12,
+                        ),
+                        overflow: TextOverflow.visible,
+                      ),
+                    ],
+                  )
+
+                ],
+              ),
               ClipOval(
                 child: Image.asset(
                   'lib/assert/profile.png',
@@ -97,33 +122,65 @@ class _UserPageState extends State<UserPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.star,color: Colors.white.withOpacity(0.7),),
-                      Text('收藏',style: TextStyle(color: Colors.white))
-                    ],
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => StarPage(),)
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.star,color: Colors.white.withOpacity(0.5),),
+                        Text('收藏',style: TextStyle(color: Colors.white.withOpacity(0.5)),),
+                      ],
+                    ),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.comment,color: Colors.white.withOpacity(0.7),),
-                      Text('评论',style: TextStyle(color: Colors.white),)
-                    ],
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LikeAndCommentPage()),
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.comment,color: Colors.white.withOpacity(0.5),),
+                        Text('评论',style: TextStyle(color: Colors.white.withOpacity(0.5)),),
+                      ],
+                    ),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.account_balance_wallet_outlined,color: Colors.white.withOpacity(0.7),),
-                      Text('订单',style: TextStyle(color: Colors.white))
-                    ],
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RecordTran()),
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.account_balance_wallet_outlined,color: Colors.white.withOpacity(0.5),),
+                        Text('订单',style: TextStyle(color: Colors.white.withOpacity(0.5)),),
+                      ],
+                    ),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.settings,color: Colors.white.withOpacity(0.7),),
-                      Text('设置',style: TextStyle(color: Colors.white))
-                    ],
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ProfilePage()),
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.settings,color: Colors.white.withOpacity(0.5),),
+                        Text('设置',style: TextStyle(color: Colors.white.withOpacity(0.5)),),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -160,7 +217,7 @@ class _UserPageState extends State<UserPage> {
                             crossAxisSpacing: 16.0,
                             mainAxisSpacing: 16.0,
                             childAspectRatio: 0.75, // 控制宽高比例，根据实际情况调整
-                            mainAxisExtent: 210
+                            mainAxisExtent: 230
                         ),
                         delegate: SliverChildBuilderDelegate(
                               (context, index) {
@@ -194,7 +251,37 @@ class _UserPageState extends State<UserPage> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 14.0),
+                                    SizedBox(height: 12.0),
+                                    Row(
+                                      children: [
+                                        Image.asset('lib/assert/区块链-2.png',width: 18,height: 18,),
+                                        SizedBox(width: 6,),
+                                        Text(
+                                          product.blockchainAddress!,
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            color: Color(0xFFD9AAFF),
+                                            shadows: [
+                                              Shadow(
+                                                blurRadius: 5,
+                                                color: Color(0xFFFFFFFF).withOpacity(0.2),
+                                                offset: Offset(0, 0),
+                                              ),
+                                              Shadow(
+                                                blurRadius: 5,
+                                                color: Color(0xFFFFFFFF).withOpacity(0.4),
+                                                offset: Offset(2, 2),
+                                              ),
+                                              Shadow(
+                                                blurRadius: 5,
+                                                color: Color(0xFFD9AAFF).withOpacity(0.4),
+                                                offset: Offset(-2, -2),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                     Text(product.name!, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
 
 

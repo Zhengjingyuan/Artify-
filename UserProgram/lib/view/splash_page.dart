@@ -46,25 +46,13 @@ class _SplashPageState extends State<SplashPage> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.purple[300]!, Colors.purple[700]!],
-          ),
+         color: Colors.white
         ),
         child: Center(
           child: AnimatedOpacity(
             duration: Duration(seconds: 2),
             opacity: _opacity,
-            child: Text(
-              '藏境',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 30.0,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            child: Image.asset('lib/assert/logo.jpg',width: 180,height: 180),
           ),
         ),
       ),

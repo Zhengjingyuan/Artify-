@@ -16,45 +16,55 @@ class ProfilePage extends StatelessWidget {
             children: [
               AppBar(
                 centerTitle: true,
-                title: Text('设置',style: TextStyle(color: Colors.white),),
+                title: Text(
+                  '设置',
+                  style: TextStyle(color: Colors.white),
+                ),
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 leading: IconButton(
                   icon: Icon(Icons.arrow_back, color: Colors.white),
                   onPressed: () {
                     Navigator.pop(context);
-
                   },
                 ),
               ),
-              ListTile(
-                leading: Icon(Icons.person, color: Colors.white),
-                title: Text('账号与安全', style: TextStyle(color: Colors.white)),
-                onTap: () {
-                  // 处理"个人资料"按钮的点击事件
+              TextButton(
+                onPressed: () {
+                  // 处理账号与安全按钮的点击事件
                 },
+                child: ListTile(
+                  leading: Icon(Icons.person, color: Colors.white),
+                  title: Text('账号与安全', style: TextStyle(color: Colors.white)),
+                ),
               ),
-              ListTile(
-                leading: Icon(Icons.comment, color: Colors.white),
-                title: Text('消息通知设置', style: TextStyle(color: Colors.white)),
-                onTap: () {
-                  // 处理"相册"按钮的点击事件
+              TextButton(
+                onPressed: () {
+                  // 处理消息通知设置按钮的点击事件
                 },
+                child: ListTile(
+                  leading: Icon(Icons.comment, color: Colors.white),
+                  title: Text('消息通知设置', style: TextStyle(color: Colors.white)),
+                ),
               ),
-              ListTile(
-                leading: Icon(Icons.settings, color: Colors.white),
-                title: Text('通用设置', style: TextStyle(color: Colors.white)),
-                onTap: () {
-                  // 处理"设置"按钮的点击事件
+              TextButton(
+                onPressed: () {
+                  // 处理通用设置按钮的点击事件
                 },
+                child: ListTile(
+                  leading: Icon(Icons.settings, color: Colors.white),
+                  title: Text('通用设置', style: TextStyle(color: Colors.white)),
+                ),
               ),
-              ListTile(
-                leading: Icon(Icons.exit_to_app, color: Colors.white),
-                title: Text('退出登录', style: TextStyle(color: Colors.white)),
-                onTap: () {
-                  // 处理"退出登录"按钮的点击事件
+              TextButton(
+                onPressed: () {
+                  // 处理退出登录按钮的点击事件
                   // TODO: 执行退出登录的逻辑
                 },
+                child: ListTile(
+                  leading: Icon(Icons.exit_to_app, color: Colors.white),
+                  title: Text('退出登录', style: TextStyle(color: Colors.white)),
+                ),
               ),
             ],
           ),

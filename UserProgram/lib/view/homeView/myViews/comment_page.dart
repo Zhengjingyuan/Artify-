@@ -30,43 +30,7 @@ class LikeAndCommentPage extends StatelessWidget {
                     },
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    '收到的赞',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: AssetImage('assets/profile_image.jpg'),
-                  ),
-                  title: Text('用户A 赞了您的帖子',style: TextStyle(
-                    color: Colors.white,
-                  )),
-                  subtitle: Text('3小时前',style: TextStyle(
-                    color: Colors.white,
-                  )),
-                ),
-                ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: AssetImage('assets/profile_image.jpg'),
-                  ),
-                  title: Text('用户B 赞了您的帖子',style: TextStyle(
-                    color: Colors.white,
 
-                  )),
-                  subtitle: Text('5小时前',style: TextStyle(
-                    color: Colors.white,
-
-                  )),
-                ),
-                // 可以根据需要添加更多收到的赞的列表项
-                Divider(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(

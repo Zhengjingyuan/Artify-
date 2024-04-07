@@ -217,4 +217,27 @@ class Http {
       }
     }
   }
+
+  Future<void> postPrompt(String endpoint, String? text,
+      {Success? success, Fail? fail, After? after}) {
+    _dio.post(
+      endpoint,
+      queryParameters: {'text':text},
+      options: Options(headers: headers),
+    ).then((response) {
+      if (response.statusCode == 200) {
+        if (success != null) {
+          success(response.data);
+        }
+      } else {
+        if (fail != null) {
+          fail(response.statusMessage, response.statusCode);
+        }
+      }
+      if (after != null) {
+        after();
+      }
+    });
+    return Future.value();
+  }
 }
