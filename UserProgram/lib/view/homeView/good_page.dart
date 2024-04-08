@@ -126,21 +126,28 @@ class _GoodPageState extends State<GoodPage> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
                 child: Image.asset(
-                  'lib/assert/art.png',
+                  'lib/assert/Group 43028.png',
                   fit: BoxFit.cover,
                 ),
               ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
                 child: Image.asset(
-                  'lib/assert/music.png',
+                  'lib/assert/Group 43030.png',
                   fit: BoxFit.cover,
                 ),
               ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
                 child: Image.asset(
-                  'lib/assert/virtual.png',
+                  'lib/assert/Group 43027.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
+                child: Image.asset(
+                  'lib/assert/Group 43029.png',
                   fit: BoxFit.cover,
                 ),
               ),

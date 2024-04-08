@@ -1,8 +1,11 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
 
 class CreateAIPage extends StatefulWidget {
-  final String prdata;
+  String prdata;
   CreateAIPage(this.prdata);
 
   @override
@@ -68,7 +71,10 @@ class _CreateAIPageState extends State<CreateAIPage> {
                     ),
                     padding: EdgeInsets.all(8.0),
                     child: Center(
-                      child: Image.network(_prdata),
+                      child: Image.memory(
+                        base64Decode(_prdata), // 网络图片地址
+                        fit: BoxFit.cover, // 图片适应方式
+                      ),
                     ),
                   ),
 

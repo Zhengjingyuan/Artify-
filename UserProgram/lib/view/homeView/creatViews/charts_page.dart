@@ -103,7 +103,7 @@ class _ChartsPageState extends State<ChartsPage> {
                                   ),
                                   SizedBox(width: 140,),
                                   Image.asset(
-                                      'lib/assert/iconamoon_heart-thin.png'
+                                      'lib/assert/热度.png',width: 20,height: 20,
                                   ),
                                   Text('22',style: TextStyle(fontSize: 12,color: Colors.white),),
 

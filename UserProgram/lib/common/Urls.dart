@@ -6,5 +6,5 @@ class Urls{
   static const String getOnChain="/chain/get/collections";
   static const String getCreatGood="/community/get/collections";
   static const String getMyGood="/collection/get/byOwner";
-  static const String prompt='/image/ai/head/string';
+  static const String prompt='/image/ai/head/string/base64';
 }
