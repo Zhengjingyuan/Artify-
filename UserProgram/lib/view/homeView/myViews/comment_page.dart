@@ -19,7 +19,7 @@ class LikeAndCommentPage extends StatelessWidget {
               children: <Widget>[
                 AppBar(
                   centerTitle: true,
-                  title: Text('赞和评论',style: TextStyle(color: Colors.white),),
+                  title: Text('Thumbs and comments',style: TextStyle(color: Colors.white),),
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   leading: IconButton(
@@ -34,7 +34,7 @@ class LikeAndCommentPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    '收到的评论',
+                    'Received comments',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -46,10 +46,10 @@ class LikeAndCommentPage extends StatelessWidget {
                   leading: CircleAvatar(
                     backgroundImage: AssetImage('assets/profile_image.jpg'),
                   ),
-                  title: Text('用户C 评论了您的帖子',style: TextStyle(
+                  title: Text('User C commented on your post',style: TextStyle(
                     color: Colors.white,
                   )),
-                  subtitle: Text('1天前',style: TextStyle(
+                  subtitle: Text('1 day ago',style: TextStyle(
                     color: Colors.white,
                   )),
                 ),
@@ -57,10 +57,10 @@ class LikeAndCommentPage extends StatelessWidget {
                   leading: CircleAvatar(
                     backgroundImage: AssetImage('assets/profile_image.jpg'),
                   ),
-                  title: Text('用户D 评论了您的帖子',style: TextStyle(
+                  title: Text('User D commented on your post',style: TextStyle(
                     color: Colors.white,
                   )),
-                  subtitle: Text('2天前',style: TextStyle(
+                  subtitle: Text('2 days ago',style: TextStyle(
                     color: Colors.white,
                   )),
                 ),

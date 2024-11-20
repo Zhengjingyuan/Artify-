@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:userprogram/model/home_good/onchain_bean.dart';
 import 'package:userprogram/util/int_extention.dart';
+import 'package:userprogram/util/size_fit.dart';
 
 /**
  * 链上藏品的详情页面
@@ -25,6 +26,7 @@ class _OnChainDetailPageState extends State<OnChainDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    HYSizeFit.initialize();
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -46,7 +48,7 @@ class _OnChainDetailPageState extends State<OnChainDetailPage> {
              top: 0,
              left: 0,
              right: 0,
-             child: Image.network(
+             child: Image.asset(
              _product.imageUrl!,
              fit: BoxFit.cover,
              height: MediaQuery.of(context).size.height * 0.5,
@@ -72,43 +74,43 @@ class _OnChainDetailPageState extends State<OnChainDetailPage> {
             ),
             Positioned(
               top: MediaQuery.of(context).size.height * 0.35,
-              left: 16,
-              right: 16,
+              left: 16.rpx,
+              right: 16.rpx,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     _product.name!,
                     style: TextStyle(
-                      fontSize: 28,
+                      fontSize: 28.rpx,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    padding: EdgeInsets.symmetric(horizontal: 12.rpx, vertical: 4.rpx),
                     decoration: BoxDecoration(
                       color: Color(0xFF4E3A74).withOpacity(0.6),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
                       _product.type == 0
-                          ? '官方发售'
+                          ? 'Official release'
                           : _product.type == 1
-                          ? '个人原创'
+                          ? 'Personal creation'
                           : _product.type == 2
-                          ? 'AI 创作'
+                          ? 'AI creation'
                           : '',
-                      style: TextStyle(color: Colors.white, fontSize: 12),
+                      style: TextStyle(color: Colors.white, fontSize: 12.rpx),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20.rpx),
                   Row(
 
                     children: [
                       Container(
-                          height: 56,
-                          width: 90,
+                          height: 56.rpx,
+                          width: 90.rpx,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6.0),
                               color: Color(0xFF3D3757).withOpacity(0.6),
@@ -118,16 +120,16 @@ class _OnChainDetailPageState extends State<OnChainDetailPage> {
                             child: Column(
                               mainAxisAlignment:MainAxisAlignment.center,
                               children: [
-                                Image.asset('lib/assert/certificate.png', color: Colors.white,width: 20,height: 20,),
-                                Text('区块链证书',style: TextStyle(color: Colors.white,fontSize: 12)),
+                                Image.asset('lib/assert/certificate.png', color: Colors.white,width: 20.rpx,height: 20.rpx,),
+                                Text('Certificate',style: TextStyle(color: Colors.white,fontSize: 12.rpx)),
                               ],
                             ),
                           )
                       ),
                       SizedBox(width: 8), // 添加间距
                       Container(
-                          height: 56,
-                          width: 90,
+                          height: 56.rpx,
+                          width: 90.rpx,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6.0),
                               color: Color(0xFF3D3757).withOpacity(0.6),
@@ -138,15 +140,15 @@ class _OnChainDetailPageState extends State<OnChainDetailPage> {
                               mainAxisAlignment:MainAxisAlignment.center,
                               children: [
                                 Image.asset('lib/assert/profile_icon.png', color: Colors.white,width: 20,height: 20,),
-                                Text('生成头像',style: TextStyle(color: Colors.white,fontSize: 12)),
+                                Text('Avatar',style: TextStyle(color: Colors.white,fontSize: 12)),
                               ],
                             ),
                           )
                       ),
                       SizedBox(width: 8), // 添加间距
                       Container(
-                          height: 56,
-                          width: 90,
+                          height: 56.rpx,
+                          width: 90.rpx,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6.0),
                               color: Color(0xFF3D3757).withOpacity(0.6),
@@ -156,27 +158,27 @@ class _OnChainDetailPageState extends State<OnChainDetailPage> {
                             child: Column(
                               mainAxisAlignment:MainAxisAlignment.center,
                               children: [
-                                Image.asset('lib/assert/illustrated.png', color: Colors.white,width: 20,height: 20,),
-                                Text('图鉴查看',style: TextStyle(color: Colors.white,fontSize: 12)),
+                                Image.asset('lib/assert/illustrated.png', color: Colors.white,width: 20.rpx,height: 20.rpx,),
+                                Text('View catalog',style: TextStyle(color: Colors.white,fontSize: 12.rpx)),
                               ],
                             ),
                           )
                       ),
                     ],
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(height: 10.rpx,),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('藏品简介',style: TextStyle(color: Colors.white,fontSize: 18),)
+                      Text('Collection Introduction',style: TextStyle(color: Colors.white,fontSize: 18.rpx),)
                     ],
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(height: 10.rpx,),
                   SingleChildScrollView(
                     child: Container(
-                      height: 400,
-                      margin: EdgeInsets.symmetric(horizontal: 20),
-                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      height: 400.rpx,
+                      margin: EdgeInsets.symmetric(horizontal: 20.rpx),
+                      padding: EdgeInsets.symmetric(vertical: 10.rpx, horizontal: 20.rpx),
                       decoration: BoxDecoration(
                         color: Color(0xFF190D2A),
                         borderRadius: BorderRadius.circular(8),
@@ -191,7 +193,7 @@ class _OnChainDetailPageState extends State<OnChainDetailPage> {
                       ),
                       child: Text(
                         _product.description!,
-                        style: TextStyle(color: Colors.white, fontSize: 15),
+                        style: TextStyle(color: Colors.white, fontSize: 15.rpx),
                       ),
                     ),
                   )
@@ -210,16 +212,16 @@ class _OnChainDetailPageState extends State<OnChainDetailPage> {
                     ),
                     border: Border.all(color: Colors.white.withOpacity(0.7),width: 1)
                 ),
-                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                padding: EdgeInsets.all(10),
+                margin: EdgeInsets.symmetric(horizontal: 20.rpx, vertical: 10.rpx),
+                padding: EdgeInsets.all(10.rpx),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 10.rpx),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         '￥${_product.price.toString()}',
-                        style: TextStyle(color:Colors.white,fontSize: 16, fontWeight: FontWeight.bold),
+                        style: TextStyle(color:Colors.white,fontSize: 16.rpx, fontWeight: FontWeight.bold),
                       ),
                       TextButton(
                         onPressed: () {
@@ -228,7 +230,7 @@ class _OnChainDetailPageState extends State<OnChainDetailPage> {
                             builder: (BuildContext context) {
                               return Container(
                                 width: MediaQuery.of(context).size.width,
-                                height: 240,
+                                height: 240.rpx,
                                 decoration: BoxDecoration(
                                   color: Color(0xFF201537),
                                   borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
@@ -240,35 +242,64 @@ class _OnChainDetailPageState extends State<OnChainDetailPage> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                           Container(
-                                          padding: EdgeInsets.symmetric(vertical: 4,horizontal: 12),
-                                          margin: EdgeInsets.all(16),
+                                          padding: EdgeInsets.symmetric(vertical: 4.rpx,horizontal: 12.rpx),
+                                          margin: EdgeInsets.all(16.rpx),
                                           decoration: BoxDecoration(
                                             color: Colors.white.withOpacity(0.4),
                                             borderRadius: BorderRadius.circular(10),
                                             border: Border.all(color: Colors.white, width: 1),
                                           ),
                                           child: Text(
-                                            '1份',
-                                            style: TextStyle(fontSize: 20),
+                                            '1 portion',
+                                            style: TextStyle(fontSize: 20.rpx),
                                           ),
                                         ),
                                       ],
                                     ),
-                                    SizedBox(height: 20),
-                                    Text('￥${_product.price.toString()}', style: TextStyle(color: Colors.white, fontSize: 24),),
+                                    SizedBox(height: 20.rpx),
+                                    Text('￥${_product.price.toString()}', style: TextStyle(color: Colors.white, fontSize: 24.rpx),),
                                     OutlinedButton(
                                       onPressed: () {
-                                        // 实现购买逻辑
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return Dialog(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(16.0),
+                                              ),
+                                              child: Container(
+                                                height: 130.rpx,
+                                                width: 245.rpx,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xFF3F3D53),
+                                                  borderRadius: BorderRadius.circular(16.0),
+                                                ),
+                                                padding: EdgeInsets.all(16.0),
+                                                child: Column(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+
+                                                    SizedBox(height: 8.rpx),
+                                                    Text("Purchase successful！",style: TextStyle(color: Colors.white,fontSize: 14.rpx),),
+                                                    SizedBox(height: 16.rpx),
+                                                  ],
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
                                       },
                                       style: OutlinedButton.styleFrom(
                                         side: BorderSide(color: Colors.white),
                                         backgroundColor: Colors.black,
                                       ),
                                       child: Text(
-                                        '立即购买',
+                                        'purchase now',
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 18,
+                                          fontSize: 18.rpx,
                                         ),
                                       ),
                                     ),
@@ -282,8 +313,8 @@ class _OnChainDetailPageState extends State<OnChainDetailPage> {
                           minimumSize: MaterialStateProperty.all(Size(0, 0)), // 设置按钮大小为0，避免默认最小大小
                         ),
                         child: Text(
-                          '购买',
-                          style: TextStyle(fontSize: 16, color: Colors.white),
+                          'PURCHASE',
+                          style: TextStyle(fontSize: 16.rpx, color: Colors.white),
                         ),
                       ),
                     ],

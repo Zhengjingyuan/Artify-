@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:userprogram/util/size_fit.dart';
+import 'package:userprogram/view/splash_page.dart';
 import 'common/Routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,6 +20,7 @@ class _MyAppState extends State<MyApp>{
   Widget build(BuildContext context){
     HYSizeFit.initialize();
     return MaterialApp(
+      home: SplashPage(),
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.splashRoute,
       onGenerateRoute: Routes.generateRoute,

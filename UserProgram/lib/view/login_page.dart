@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:userprogram/util/int_extention.dart';
+import 'package:userprogram/util/size_fit.dart';
 import 'package:userprogram/widget/ArtifyAppBar.dart';
 
 import '../base/provider_widget.dart';
@@ -27,6 +28,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    HYSizeFit.initialize();
     return Scaffold(
         resizeToAvoidBottomInset: false,
       body: Container(
@@ -42,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: <Widget>[
               SizedBox(height: 130.rpx,),
-              Text('藏镜',style: TextStyle(color: Colors.white,fontSize: 34,fontWeight: FontWeight.bold),),
+              Text('藏境',style: TextStyle(color: Colors.white,fontSize: 34,fontWeight: FontWeight.bold),),
               SizedBox(height: 70.rpx,),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

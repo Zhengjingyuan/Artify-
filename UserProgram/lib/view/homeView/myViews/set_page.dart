@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:userprogram/common/Routes.dart';
+import 'package:userprogram/viewmodel/login_viewmodel.dart';
 class ProfilePage extends StatelessWidget {
+
+  LoginViewModel loginViewModel=LoginViewModel();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +22,7 @@ class ProfilePage extends StatelessWidget {
               AppBar(
                 centerTitle: true,
                 title: Text(
-                  '设置',
+                  'Setting',
                   style: TextStyle(color: Colors.white),
                 ),
                 backgroundColor: Colors.transparent,
@@ -35,7 +40,7 @@ class ProfilePage extends StatelessWidget {
                 },
                 child: ListTile(
                   leading: Icon(Icons.person, color: Colors.white),
-                  title: Text('账号与安全', style: TextStyle(color: Colors.white)),
+                  title: Text('Account and Security', style: TextStyle(color: Colors.white)),
                 ),
               ),
               TextButton(
@@ -44,7 +49,7 @@ class ProfilePage extends StatelessWidget {
                 },
                 child: ListTile(
                   leading: Icon(Icons.comment, color: Colors.white),
-                  title: Text('消息通知设置', style: TextStyle(color: Colors.white)),
+                  title: Text('Message notification settings', style: TextStyle(color: Colors.white)),
                 ),
               ),
               TextButton(
@@ -53,17 +58,17 @@ class ProfilePage extends StatelessWidget {
                 },
                 child: ListTile(
                   leading: Icon(Icons.settings, color: Colors.white),
-                  title: Text('通用设置', style: TextStyle(color: Colors.white)),
+                  title: Text('Common Setting', style: TextStyle(color: Colors.white)),
                 ),
               ),
               TextButton(
                 onPressed: () {
-                  // 处理退出登录按钮的点击事件
-                  // TODO: 执行退出登录的逻辑
+                  loginViewModel.logout();
+                  SystemNavigator.pop();
                 },
                 child: ListTile(
                   leading: Icon(Icons.exit_to_app, color: Colors.white),
-                  title: Text('退出登录', style: TextStyle(color: Colors.white)),
+                  title: Text('Log out', style: TextStyle(color: Colors.white)),
                 ),
               ),
             ],

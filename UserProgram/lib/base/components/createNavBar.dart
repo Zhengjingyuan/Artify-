@@ -17,7 +17,7 @@ class CreateNavBar extends StatelessWidget {
               onTabSelected(0);
             },
             child: Text(
-              "孵化大厅",
+              "INCUBATION",
               style: TextStyle(
                 fontSize: 18,
                 color: selectedIndex == 0 ? Color(0xFFD9AAFF) : Colors.white,
@@ -29,7 +29,7 @@ class CreateNavBar extends StatelessWidget {
               onTabSelected(1);
             },
             child: Text(
-              "创作台",
+              "CRATION",
               style: TextStyle(
                 fontSize: 18,
                 color: selectedIndex == 1 ? Color(0xFFD9AAFF) : Colors.white,

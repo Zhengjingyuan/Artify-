@@ -41,9 +41,9 @@ class _CarouselSliderDemoState extends State<CarouselSliderDemo> {
             },
           ),
           items: [
-            cardItem(widget.image1, Colors.white, 'NO1'),
-            cardItem(widget.image2, Colors.white, 'NO2'),
-            cardItem(widget.image3, Colors.white, 'NO3'),
+            cardItem(widget.image1, Colors.transparent, 'NO1'),
+            cardItem(widget.image2, Colors.transparent, 'NO2'),
+            cardItem(widget.image3, Colors.transparent, 'NO3'),
           ],
         ),
         Row(
@@ -97,7 +97,7 @@ class _CarouselSliderDemoState extends State<CarouselSliderDemo> {
               children: <Widget>[
                 Image.network(
                   imageUrl,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                   height: 240,
                   width: 360,
                 ),

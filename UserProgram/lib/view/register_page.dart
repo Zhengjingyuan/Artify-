@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:userprogram/model/user_bean.dart';
 import 'package:userprogram/util/int_extention.dart';
+import 'package:userprogram/util/size_fit.dart';
 import 'package:userprogram/viewmodel/register_viewmodel.dart';
 
 import '../common/Routes.dart';
@@ -20,6 +21,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
+    HYSizeFit.initialize();
     return Scaffold(
         resizeToAvoidBottomInset: false,
       body: Container(
@@ -35,7 +37,7 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             children: <Widget>[
               SizedBox(height: 130.rpx,),
-              Text('藏镜',style: TextStyle(color: Colors.white,fontSize: 34,fontWeight: FontWeight.bold),),
+              Text('藏境',style: TextStyle(color: Colors.white,fontSize: 34,fontWeight: FontWeight.bold),),
               SizedBox(height: 70.rpx,),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

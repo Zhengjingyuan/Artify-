@@ -33,7 +33,7 @@ class _CreatePage2State extends State<CreatePage2> {
       if (promptViewModel.isImageString) {
         generatedImage = promptViewModel.imageString;
         cancelImageGenerationTimer(); // 取消定时器
-        Future.delayed(Duration(seconds: 10), () {
+        Future.delayed(Duration(seconds: 2), () {
           setState(() {
             isLoading = false; // 显示加载中对话框
           });
@@ -103,7 +103,7 @@ class _CreatePage2State extends State<CreatePage2> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(width: 10.rpx,),
-                        Text('AI创作',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20.rpx),)
+                        Text('AI Creation',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20.rpx),)
                       ],
                     ),
                     GestureDetector(
@@ -136,10 +136,11 @@ class _CreatePage2State extends State<CreatePage2> {
                                   ),
                                 ),
                               TextField(
+                                keyboardType: TextInputType.text,
                                 controller: prtextController,
                                 style: TextStyle(color: Colors.white.withOpacity(0.7)),
                                 decoration: InputDecoration(
-                                  hintText: '请对你所期望的NFT作品效果进行描述..',
+                                  hintText: 'Please describe the desired of your NFT artwork..',
                                   hintStyle: TextStyle(color: Colors.white.withOpacity(0.5),fontSize: 14.rpx),
                                   border: InputBorder.none, // 隐藏输入框默认边框
                                   contentPadding: EdgeInsets.symmetric(horizontal: 6.rpx,vertical: 10.rpx), // 设置内边距
@@ -182,11 +183,11 @@ class _CreatePage2State extends State<CreatePage2> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          '一只黄色的长颈鹿',
+                                          'A yellow giraffe',
                                           style: TextStyle(color: Colors.white),
                                         ),
                                         Text(
-                                          '坐在一张蓝色的椅子上',
+                                          'Sitting on a blue chair',
                                           style: TextStyle(color: Colors.white),
                                         ),
                                       ],
@@ -208,10 +209,10 @@ class _CreatePage2State extends State<CreatePage2> {
                                         border: Border.all(color: Colors.white.withOpacity(0.1))
                                     ),
                                     child: Center(
-                                      child: Text('🦒一只黄色的长颈鹿',style: TextStyle(color: Colors.white)),
+                                      child: Text('🦒A yellow giraffe',style: TextStyle(color: Colors.white)),
                                     )
                                 ),
-                                SizedBox(width: 16.rpx), // 添加间距
+                                SizedBox(width: 12.rpx), // 添加间距
                                 Container(
                                     height: 48.rpx,
                                     width: 48.rpx,
@@ -221,10 +222,10 @@ class _CreatePage2State extends State<CreatePage2> {
                                         border: Border.all(color: Colors.white.withOpacity(0.1))
                                     ),
                                     child: Center(
-                                      child: Text('坐在',style: TextStyle(color: Colors.white)),
+                                      child: Text('sit on',style: TextStyle(color: Colors.white)),
                                     )
                                 ),
-                                SizedBox(width: 16.rpx), // 添加间距
+                                SizedBox(width: 12.rpx), // 添加间距
                                 Container(
                                     height: 45.rpx,
                                     width: 120.rpx,
@@ -234,7 +235,7 @@ class _CreatePage2State extends State<CreatePage2> {
                                         border: Border.all(color: Colors.white.withOpacity(0.1))
                                     ),
                                     child: Center(
-                                      child: Text('💺蓝色的椅子',style: TextStyle(color: Colors.white)),
+                                      child: Text('💺the blue chair',style: TextStyle(color: Colors.white)),
                                     )
                                 ),
                               ],
@@ -268,7 +269,7 @@ class _CreatePage2State extends State<CreatePage2> {
                             backgroundColor: MaterialStateProperty.all(Colors.white.withOpacity(0.4)), // 修改按钮颜色
                             padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 5.rpx, horizontal: 20.rpx)), // 设置按钮内边距
                           ),
-                          child: Text('生成作品', style: TextStyle(color: Colors.white)),
+                          child: Text('Generate works', style: TextStyle(color: Colors.white)),
 
                         ),
                       ),
@@ -278,7 +279,7 @@ class _CreatePage2State extends State<CreatePage2> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(width: 10.rpx,),
-                        Text('创意案例',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20.rpx),)
+                        Text('Creative Cases',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20.rpx),)
                       ],
                     ),
                     SizedBox(height: 10.rpx,),
@@ -320,7 +321,7 @@ class _CreatePage2State extends State<CreatePage2> {
                                         border: Border.all(color: Colors.white.withOpacity(0.1))
                                     ),
                                     child: Center(
-                                      child: Text('科幻小说',style: TextStyle(color: Colors.white)),
+                                      child: Text('science fiction',style: TextStyle(color: Colors.white)),
                                     )
                                 ),
                                 SizedBox(width: 8.rpx), // 添加间距
@@ -333,7 +334,7 @@ class _CreatePage2State extends State<CreatePage2> {
                                         border: Border.all(color: Colors.white.withOpacity(0.1))
                                     ),
                                     child: Center(
-                                      child: Text('夜晚',style: TextStyle(color: Colors.white)),
+                                      child: Text('night',style: TextStyle(color: Colors.white)),
                                     )
                                 ),
                                 SizedBox(width: 8.rpx), // 添加间距
@@ -346,7 +347,7 @@ class _CreatePage2State extends State<CreatePage2> {
                                         border: Border.all(color: Colors.white.withOpacity(0.1))
                                     ),
                                     child: Center(
-                                      child: Text('背景有许多建筑',style: TextStyle(color: Colors.white)),
+                                      child: Text('many buildings',style: TextStyle(color: Colors.white)),
                                     )
                                 ),
                               ],
@@ -367,7 +368,7 @@ class _CreatePage2State extends State<CreatePage2> {
                                         border: Border.all(color: Colors.white.withOpacity(0.1))
                                     ),
                                     child: Center(
-                                      child: Text('上海外滩',style: TextStyle(color: Colors.white)),
+                                      child: Text('Shanghai Bund',style: TextStyle(color: Colors.white)),
                                     )
                                 ),
                                 SizedBox(width: 8.rpx), // 添加间距
@@ -380,7 +381,7 @@ class _CreatePage2State extends State<CreatePage2> {
                                         border: Border.all(color: Colors.white.withOpacity(0.1))
                                     ),
                                     child: Center(
-                                      child: Text('氖标志',style: TextStyle(color: Colors.white)),
+                                      child: Text('Neon',style: TextStyle(color: Colors.white)),
                                     )
                                 ),
                                 SizedBox(width: 8.rpx), // 添加间距

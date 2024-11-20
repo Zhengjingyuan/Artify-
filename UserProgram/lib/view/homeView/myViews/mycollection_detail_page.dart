@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:userprogram/model/home_good/onchain_bean.dart';
+import 'package:userprogram/util/int_extention.dart';
+import 'package:userprogram/util/size_fit.dart';
+import 'package:userprogram/view/homeView/myViews/make_card_page.dart';
 
 /**
  * 我的藏品的详情页面
@@ -25,6 +28,7 @@ class _CollectionDetailPageState extends State<CollectionDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    HYSizeFit.initialize();
     return Scaffold(
         body: Container(
           decoration: BoxDecoration(
@@ -72,21 +76,21 @@ class _CollectionDetailPageState extends State<CollectionDetailPage> {
               ),
               Positioned(
                 top: MediaQuery.of(context).size.height * 0.35,
-                left: 16,
-                right: 16,
+                left: 16.rpx,
+                right: 16.rpx,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       _product.name!,
                       style: TextStyle(
-                        fontSize: 28,
+                        fontSize: 28.rpx,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                      padding: EdgeInsets.symmetric(horizontal: 12.rpx, vertical: 4.rpx),
                       decoration: BoxDecoration(
                         color: Color(0xFF4E3A74).withOpacity(0.6),
                         borderRadius: BorderRadius.circular(20),
@@ -99,16 +103,16 @@ class _CollectionDetailPageState extends State<CollectionDetailPage> {
                             : _product.type == 2
                             ? 'AI 创作'
                             : '',
-                        style: TextStyle(color: Colors.white, fontSize: 12),
+                        style: TextStyle(color: Colors.white, fontSize: 12.rpx),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 20.rpx),
                     Row(
 
                       children: [
                         Container(
-                            height: 56,
-                            width: 90,
+                            height: 56.rpx,
+                            width: 90.rpx,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6.0),
                                 color: Color(0xFF3D3757).withOpacity(0.6),
@@ -118,16 +122,16 @@ class _CollectionDetailPageState extends State<CollectionDetailPage> {
                               child: Column(
                                 mainAxisAlignment:MainAxisAlignment.center,
                                 children: [
-                                  Image.asset('lib/assert/certificate.png', color: Colors.white,width: 20,height: 20,),
-                                  Text('区块链证书',style: TextStyle(color: Colors.white,fontSize: 12)),
+                                  Image.asset('lib/assert/certificate.png', color: Colors.white,width: 20.rpx,height: 20.rpx,),
+                                  Text('区块链证书',style: TextStyle(color: Colors.white,fontSize: 12.px)),
                                 ],
                               ),
                             )
                         ),
-                        SizedBox(width: 8), // 添加间距
+                        SizedBox(width: 8.rpx), // 添加间距
                         Container(
-                            height: 56,
-                            width: 90,
+                            height: 56.rpx,
+                            width: 90.rpx,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6.0),
                                 color: Color(0xFF3D3757).withOpacity(0.6),
@@ -137,16 +141,16 @@ class _CollectionDetailPageState extends State<CollectionDetailPage> {
                               child: Column(
                                 mainAxisAlignment:MainAxisAlignment.center,
                                 children: [
-                                  Image.asset('lib/assert/profile_icon.png', color: Colors.white,width: 20,height: 20,),
-                                  Text('生成头像',style: TextStyle(color: Colors.white,fontSize: 12)),
+                                  Image.asset('lib/assert/profile_icon.png', color: Colors.white,width: 20.rpx,height: 20.rpx,),
+                                  Text('生成头像',style: TextStyle(color: Colors.white,fontSize: 12.rpx)),
                                 ],
                               ),
                             )
                         ),
-                        SizedBox(width: 8), // 添加间距
+                        SizedBox(width: 8.rpx), // 添加间距
                         Container(
-                            height: 56,
-                            width: 90,
+                            height: 56.rpx,
+                            width: 90.rpx,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6.0),
                                 color: Color(0xFF3D3757).withOpacity(0.6),
@@ -156,28 +160,28 @@ class _CollectionDetailPageState extends State<CollectionDetailPage> {
                               child: Column(
                                 mainAxisAlignment:MainAxisAlignment.center,
                                 children: [
-                                  Image.asset('lib/assert/illustrated.png', color: Colors.white,width: 20,height: 20,),
-                                  Text('图鉴查看',style: TextStyle(color: Colors.white,fontSize: 12)),
+                                  Image.asset('lib/assert/illustrated.png', color: Colors.white,width: 20.rpx,height: 20.rpx,),
+                                  Text('图鉴查看',style: TextStyle(color: Colors.white,fontSize: 12.rpx)),
                                 ],
                               ),
                             )
                         ),
                       ],
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(height: 10.rpx,),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('藏品简介',style: TextStyle(color: Colors.white,fontSize: 18),)
+                        Text('藏品简介',style: TextStyle(color: Colors.white,fontSize: 18.rpx),)
                       ],
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(height: 10.rpx,),
                     SingleChildScrollView(
                       child: Container(
                         width:MediaQuery.of(context).size.width,
-                        height: 400,
-                        margin: EdgeInsets.symmetric(horizontal: 20),
-                        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                        height: 400.rpx,
+                        margin: EdgeInsets.symmetric(horizontal: 20.rpx),
+                        padding: EdgeInsets.symmetric(vertical: 10.rpx, horizontal: 20.rpx),
                         decoration: BoxDecoration(
                           color: Color(0xFF190D2A),
                           borderRadius: BorderRadius.circular(8),
@@ -192,7 +196,7 @@ class _CollectionDetailPageState extends State<CollectionDetailPage> {
                         ),
                         child: Text(
                           _product.description!,
-                          style: TextStyle(color: Colors.white, fontSize: 15),
+                          style: TextStyle(color: Colors.white, fontSize: 15.rpx),
                         ),
                       ),
                     )
@@ -211,23 +215,26 @@ class _CollectionDetailPageState extends State<CollectionDetailPage> {
                         ),
                         border: Border.all(color: Colors.white.withOpacity(0.7),width: 1)
                     ),
-                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    padding: EdgeInsets.all(10),
+                    margin: EdgeInsets.symmetric(horizontal: 20.rpx, vertical: 10.rpx),
+                    padding: EdgeInsets.all(10.rpx),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 10.rpx),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           TextButton(
                             onPressed: () {
-                              // 购买按钮点击事件处理逻辑
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => MakeCardPage(_product),)
+                              );
                             },
                             style: ButtonStyle(
                               minimumSize: MaterialStateProperty.all(Size(0, 0)), // 设置按钮大小为0，避免默认最小大小
                             ),
                             child: Text(
                               '制作实体卡片',
-                              style: TextStyle(fontSize: 16, color: Colors.white),
+                              style: TextStyle(fontSize: 16.rpx, color: Colors.white),
                             ),
                           ),
                         ],

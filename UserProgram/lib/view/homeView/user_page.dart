@@ -22,17 +22,16 @@ class _UserPageState extends State<UserPage> {
   List<OnChainGood> onChainGoodList = [
     OnChainGood(
       blockchainAddress: "AC16386#18793/6199",
-      category: "category2",
+      category: "",
       commentsNum: 5,
       createdAt: "2022-02-01",
       creator: 2,
-      description: "description2",
-      hotValue: 50,
+      description: "    The frozen rose is a magnificent flower that blooms in the cold winter due to the persistence of southern children towards snow. Although snow often falls less frequently in the south, children's love and longing for snow never diminish, as if snowflakes bloom in their hearts and become an indelible memory. The persistence of southern children towards snow stems from their curiosity and longing for the unfamiliar and mysterious white world. ",      hotValue: 50,
       id: 2,
-      imageUrl: "lib/assert/source_6.png",
+      imageUrl: "lib/assert/rose.png",
       isOnChain: false,
       likeNum: 10,
-      name: "name2",
+      name: "Frozen Rose",
       onChainTime: "2022-02-02",
       owner: 2,
       price: 5.5,
@@ -46,13 +45,13 @@ class _UserPageState extends State<UserPage> {
       commentsNum: 10,
       createdAt: "2022-01-01",
       creator: 1,
-      description: "description1",
+      description: "Su embroidery carries the tenderness and elegance of the water towns in Jiangnan. In the interweaving of needles and threads, the waves roll, the mountains and rivers are magnificent, and vivid paintings bloom in Su embroidery. With a thousand year old craftsmanship, it depicts the mountains and rivers, showcasing the charm of Jiangnan. Every stitch and thread showcases the unique craftsmanship.",
       hotValue: 100,
       id: 1,
-      imageUrl: "lib/assert/source_1.png",
+      imageUrl: "lib/assert/mountain.jpg",
       isOnChain: true,
       likeNum: 20,
-      name: "name1",
+      name: "Langli Mountain",
       onChainTime: "2022-01-02",
       owner: 1,
       price: 10.5,
@@ -83,14 +82,14 @@ class _UserPageState extends State<UserPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('欢迎，艺术探索者..',style: TextStyle(color: Color(0xFFD9AAFF),fontSize: 18,fontWeight: FontWeight.bold),),
+                  Text('Welcome, art explorer..',style: TextStyle(color: Color(0xFFD9AAFF),fontSize: 18,fontWeight: FontWeight.bold),),
                   SizedBox(height: 10,),
                   Row(
                     children: [
                       Image.asset('lib/assert/区块链.png',width: 16,height: 16,),
                       SizedBox(width: 5,),
                       Text(
-                        '区块链地址：daf35e4ff6555dbf172af...',
+                        'Blockchain：daf35e4ff6555dbf172af...',
                         style: TextStyle(color: Colors.grey.withOpacity(0.6),
                           fontSize: 12,
                         ),
@@ -103,7 +102,7 @@ class _UserPageState extends State<UserPage> {
               ),
               ClipOval(
                 child: Image.asset(
-                  'lib/assert/profile.png',
+                  'lib/assert/touxiang.png',
                   width: 60,
                   height: 60,
                 ),
@@ -133,7 +132,7 @@ class _UserPageState extends State<UserPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(Icons.star,color: Colors.white.withOpacity(0.5),),
-                        Text('收藏',style: TextStyle(color: Colors.white.withOpacity(0.5)),),
+                        Text('star',style: TextStyle(color: Colors.white.withOpacity(0.5)),),
                       ],
                     ),
                   ),
@@ -148,7 +147,7 @@ class _UserPageState extends State<UserPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(Icons.comment,color: Colors.white.withOpacity(0.5),),
-                        Text('评论',style: TextStyle(color: Colors.white.withOpacity(0.5)),),
+                        Text('comment',style: TextStyle(color: Colors.white.withOpacity(0.5)),),
                       ],
                     ),
                   ),
@@ -163,7 +162,7 @@ class _UserPageState extends State<UserPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(Icons.account_balance_wallet_outlined,color: Colors.white.withOpacity(0.5),),
-                        Text('订单',style: TextStyle(color: Colors.white.withOpacity(0.5)),),
+                        Text('order',style: TextStyle(color: Colors.white.withOpacity(0.5)),),
                       ],
                     ),
                   ),
@@ -178,7 +177,7 @@ class _UserPageState extends State<UserPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(Icons.settings,color: Colors.white.withOpacity(0.5),),
-                        Text('设置',style: TextStyle(color: Colors.white.withOpacity(0.5)),),
+                        Text('setting',style: TextStyle(color: Colors.white.withOpacity(0.5)),),
                       ],
                     ),
                   ),
@@ -193,7 +192,7 @@ class _UserPageState extends State<UserPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(width: 30,),
-              Text('我的藏品',style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),)
+              Text('My collection',style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),)
             ],
           ),
           SizedBox(
@@ -282,7 +281,12 @@ class _UserPageState extends State<UserPage> {
                                         ),
                                       ],
                                     ),
-                                    Text(product.name!, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
+                                    Row(
+                                      children: [
+                                        SizedBox(width: 5,),
+                                        Text(product.name!, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white)),
+                                      ],
+                                    )
 
 
                                   ],

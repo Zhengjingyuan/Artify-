@@ -1,5 +1,9 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:userprogram/model/home_good/onchain_bean.dart';
+import 'package:userprogram/util/int_extention.dart';
+import 'package:userprogram/util/size_fit.dart';
 
 
 class CreateDetailPage extends StatefulWidget {
@@ -10,20 +14,39 @@ class CreateDetailPage extends StatefulWidget {
   _CreateDetailPageState createState() => _CreateDetailPageState();
 }
 
-class _CreateDetailPageState extends State<CreateDetailPage> {
+class _CreateDetailPageState extends State<CreateDetailPage> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _likeAnimation;
+  late Animation<double> _starAnimation;
 
   bool isLiked = false;
   bool isFavorite = false;
+  int like=243;
+  int star=89;
 
   late OnChainGood _product;
   @override
   void initState() {
     _product = widget.product;
     super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 200),
+      vsync: this,
+    );
+
+    _likeAnimation = Tween<double>(begin: 1.0, end: 1.5).animate(_controller);
+    _starAnimation =Tween<double>(begin: 1.0, end: 1.5).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    HYSizeFit.initialize();
     return Scaffold(
         body: Container(
           decoration: BoxDecoration(
@@ -58,7 +81,7 @@ class _CreateDetailPageState extends State<CreateDetailPage> {
                 right: 0,
                 child: AppBar(
                   centerTitle: true,
-                  title: Text('藏品详情',style: TextStyle(color: Colors.white),),
+                  title: Text('Collection Details',style: TextStyle(color: Colors.white),),
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   leading: IconButton(
@@ -71,43 +94,43 @@ class _CreateDetailPageState extends State<CreateDetailPage> {
               ),
               Positioned(
                 top: MediaQuery.of(context).size.height * 0.35,
-                left: 16,
-                right: 16,
+                left: 16.rpx,
+                right: 16.rpx,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       _product.name!,
                       style: TextStyle(
-                        fontSize: 28,
+                        fontSize: 28.rpx,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                      padding: EdgeInsets.symmetric(horizontal: 12.rpx, vertical: 4.rpx),
                       decoration: BoxDecoration(
                         color: Color(0xFF4E3A74).withOpacity(0.6),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
                           _product.type == 0
-                              ? '官方发售'
+                              ? 'Official'
                               : _product.type == 1
-                              ? '个人原创'
+                              ? 'Original'
                               : _product.type == 2
-                              ? 'AI 创作'
+                              ? 'AI'
                               : '',
-                        style: TextStyle(color: Colors.white, fontSize: 12),
+                        style: TextStyle(color: Colors.white, fontSize: 12.rpx),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 20.rpx),
                     Row(
 
                       children: [
                         Container(
-                            height: 56,
-                            width: 90,
+                            height: 56.rpx,
+                            width: 90.rpx,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6.0),
                                 color: Color(0xFF3D3757).withOpacity(0.6),
@@ -117,16 +140,16 @@ class _CreateDetailPageState extends State<CreateDetailPage> {
                               child: Column(
                                 mainAxisAlignment:MainAxisAlignment.center,
                                 children: [
-                                  Image.asset('lib/assert/certificate.png', color: Colors.white,width: 20,height: 20,),
-                                  Text('区块链证书',style: TextStyle(color: Colors.white,fontSize: 12)),
+                                  Image.asset('lib/assert/certificate.png', color: Colors.white,width: 20.rpx,height: 20.rpx,),
+                                  Text('Blockchain',style: TextStyle(color: Colors.white,fontSize: 12.rpx)),
                                 ],
                               ),
                             )
                         ),
-                        SizedBox(width: 8), // 添加间距
+                        SizedBox(width: 8.rpx), // 添加间距
                         Container(
-                            height: 56,
-                            width: 90,
+                            height: 56.rpx,
+                            width: 90.rpx,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6.0),
                                 color: Color(0xFF3D3757).withOpacity(0.6),
@@ -136,16 +159,16 @@ class _CreateDetailPageState extends State<CreateDetailPage> {
                               child: Column(
                                 mainAxisAlignment:MainAxisAlignment.center,
                                 children: [
-                                  Image.asset('lib/assert/profile_icon.png', color: Colors.white,width: 20,height: 20,),
-                                  Text('生成头像',style: TextStyle(color: Colors.white,fontSize: 12)),
+                                  Image.asset('lib/assert/profile_icon.png', color: Colors.white,width: 20.rpx,height: 20.rpx,),
+                                  Text('Avatar',style: TextStyle(color: Colors.white,fontSize: 12.rpx)),
                                 ],
                               ),
                             )
                         ),
-                        SizedBox(width: 8), // 添加间距
+                        SizedBox(width: 8.rpx), // 添加间距
                         Container(
-                            height: 56,
-                            width: 90,
+                            height: 56.rpx,
+                            width: 90.rpx,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6.0),
                                 color: Color(0xFF3D3757).withOpacity(0.6),
@@ -155,48 +178,48 @@ class _CreateDetailPageState extends State<CreateDetailPage> {
                               child: Column(
                                 mainAxisAlignment:MainAxisAlignment.center,
                                 children: [
-                                  Image.asset('lib/assert/illustrated.png', color: Colors.white,width: 20,height: 20,),
-                                  Text('图鉴查看',style: TextStyle(color: Colors.white,fontSize: 12)),
+                                  Image.asset('lib/assert/illustrated.png', color: Colors.white,width: 20.rpx,height: 20.rpx,),
+                                  Text('Catalog',style: TextStyle(color: Colors.white,fontSize: 12.rpx)),
                                 ],
                               ),
                             )
                         ),
                       ],
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(height: 10.rpx,),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('作者简介',style: TextStyle(color: Colors.white,fontSize: 18),)
+                        Text('About Author',style: TextStyle(color: Colors.white,fontSize: 18.rpx),)
                       ],
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      padding: EdgeInsets.symmetric(vertical: 10.rpx, horizontal: 20.rpx),
                       decoration: BoxDecoration(
                         color:Colors.transparent,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        '    杰克·汉密尔顿（Jack Hamilton）,现代艺术家，生于一个小渔村，从小就被大海的壮阔和神秘所吸引。他的作品以其独特的风格和深刻的内涵而闻名于世，常常被赞誉为将自然之美完美呈现在画布上的大师。',
-                        style: TextStyle(color: Colors.white, fontSize: 15),
+                        '    I am Chi Lushan, a free soul who loves art. For me, art is a way of life and a means for me to express my inner emotions and thoughts. I enjoy exploring, creating, and sharing my creativity and ideas through various art forms.',
+                        style: TextStyle(color: Colors.white, fontSize: 15.rpx),
                       ),
                     ),
                     SizedBox(height: 5,),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('创作故事',style: TextStyle(color: Colors.white,fontSize: 18),)
+                        Text('Creating Story',style: TextStyle(color: Colors.white,fontSize: 18.rpx),)
                       ],
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      padding: EdgeInsets.symmetric(vertical: 10.rpx, horizontal: 20.rpx),
                       decoration: BoxDecoration(
                         color:Colors.transparent,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        '杰克·汉密尔顿从小就对大海充满热爱与向往。他常常独自来到海边，凝视着那一波波汹涌的浪花，思考着人生的起伏与变化。《Wave》便是他对大海无尽力量的致敬之作，也是他内心世界的一次完美呈现。',
-                        style: TextStyle(color: Colors.white, fontSize: 15),
+                        '    Su embroidery carries the tenderness and elegance of the water towns in Jiangnan. In the interweaving of needles and threads, the waves roll, the mountains and rivers are magnificent, and vivid paintings bloom in Su embroidery. With a thousand year old craftsmanship, it depicts the mountains and rivers, showcasing the charm of Jiangnan. Every stitch and thread showcases the unique craftsmanship.',
+                        style: TextStyle(color: Colors.white, fontSize: 15.rpx),
                       ),
                     ),
 
@@ -211,39 +234,61 @@ class _CreateDetailPageState extends State<CreateDetailPage> {
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.6),
                     borderRadius: BorderRadius.all(Radius.circular(24)),
-                    border: Border.all(color: Colors.white.withOpacity(0.7), width: 1),
+                    border: Border.all(color: Colors.white.withOpacity(0.7), width: 1.rpx),
                   ),
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.symmetric(horizontal: 20.rpx, vertical: 10.rpx),
+                  padding: EdgeInsets.all(10.rpx),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    padding: EdgeInsets.symmetric(horizontal: 10.rpx),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        IconButton(
-                          onPressed: () {
-                            setState(() {
-                              isLiked = !isLiked; // 点击后切换点赞状态
-                            });
-                          },
-                          icon: Icon(
-                            isLiked ? Icons.favorite : Icons.favorite_border, // 根据点赞状态显示不同图标
-                            color: isLiked ? Colors.red : Colors.white, // 根据点赞状态设置颜色
-                          ),
+                        AnimatedBuilder(
+                            animation: _controller,
+                            builder:(context,child){
+                              return IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    isLiked = !isLiked;
+                                    if(isLiked){
+                                      like++;
+                                      _controller.forward();
+                                    }else{
+                                      like--;
+                                      _controller.reverse();
+                                    }
+                                  });
+                                },
+                                icon: Icon(
+                                  isLiked ? Icons.favorite : Icons.favorite_border, // 根据点赞状态显示不同图标
+                                  color: isLiked ? Colors.red : Colors.white, //
+                                  size: _likeAnimation.value * 20.rpx,
+                                ),
+                              );
+                        }
                         ),
-                        Text('50',style: TextStyle(color: Colors.white),),
+                        Text(like.toString(),style: TextStyle(color: Colors.white),),
                         IconButton(
                           onPressed: () {
                             setState(() {
                               isFavorite = !isFavorite; // 点击后切换收藏状态
+                              if(isFavorite){
+                                star++;
+                                _controller.forward();
+                              }else{
+                                star--;
+                                _controller.reverse();
+                              }
+
                             });
                           },
                           icon: Icon(
                             isFavorite ? Icons.star : Icons.star_border, // 根据收藏状态显示不同图标
                             color: isFavorite ? Colors.greenAccent : Colors.white, // 根据收藏状态设置颜色
+                            size: _likeAnimation.value * 20.rpx,
                           ),
                         ),
-                        Text('50',style: TextStyle(color: Colors.white),),
+                        Text(star.toString(),style: TextStyle(color: Colors.white),),
                         IconButton(
                           onPressed: () {
                             // 点击评论逻辑处理
@@ -251,6 +296,27 @@ class _CreateDetailPageState extends State<CreateDetailPage> {
                           icon: Icon(Icons.comment), // 评论图标，可根据具体需要替换
                         ),
                         Text('50',style: TextStyle(color: Colors.white),),
+                        SizedBox(
+                          width: 30.rpx,
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 14.rpx,vertical: 8.rpx),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(36),
+                            border: Border.all(
+                              color: Colors.white,
+                              width: 1,
+                            ),
+                          ),
+                          child: Text(
+                            '发布评论',
+                            style: TextStyle(
+                              fontSize: 12.rpx,
+                              color: Colors.white
+                            ),
+                          ),
+                  )
                       ],
                     ),
                   ),

@@ -21,7 +21,7 @@ class Http {
       connectTimeout: Duration(milliseconds: 30000),
       receiveTimeout: Duration(milliseconds: 30000),
       sendTimeout: Duration(milliseconds: 30000),
-      baseUrl: "http://sosd.fzuhuahuo.cn:16052/api/v1",
+      baseUrl: "http://81.71.2.123:16052/api/v1",
       responseType: ResponseType.json,
     ));
     return dio;
@@ -239,5 +239,83 @@ class Http {
       }
     });
     return Future.value();
+  }
+
+  Future<void> getDailyRank(String endpoint,
+      {void Function(dynamic)? success, void Function(String, int)? fail, void Function()? after}) async {
+    try {
+      final response = await _dio.get(
+        endpoint,
+        options: Options(headers: headers),
+      );
+      if (response.statusCode == 200) {
+        if (success != null) {
+          success(response.data);
+        }
+      } else {
+        if (fail != null) {
+          fail(response.statusMessage ?? '', response.statusCode ?? 0);
+        }
+      }
+      if (after != null) {
+        after();
+      }
+    } catch (e) {
+      if (fail != null) {
+        fail(e.toString(), 500); // You can customize the status code here
+      }
+    }
+  }
+
+  Future<void> getWeeklyRank(String endpoint,
+      {void Function(dynamic)? success, void Function(String, int)? fail, void Function()? after}) async {
+    try {
+      final response = await _dio.get(
+        endpoint,
+        options: Options(headers: headers),
+      );
+      if (response.statusCode == 200) {
+        if (success != null) {
+          success(response.data);
+        }
+      } else {
+        if (fail != null) {
+          fail(response.statusMessage ?? '', response.statusCode ?? 0);
+        }
+      }
+      if (after != null) {
+        after();
+      }
+    } catch (e) {
+      if (fail != null) {
+        fail(e.toString(), 500); // You can customize the status code here
+      }
+    }
+  }
+
+  Future<void> getMonthyRank(String endpoint,
+      {void Function(dynamic)? success, void Function(String, int)? fail, void Function()? after}) async {
+    try {
+      final response = await _dio.get(
+        endpoint,
+        options: Options(headers: headers),
+      );
+      if (response.statusCode == 200) {
+        if (success != null) {
+          success(response.data);
+        }
+      } else {
+        if (fail != null) {
+          fail(response.statusMessage ?? '', response.statusCode ?? 0);
+        }
+      }
+      if (after != null) {
+        after();
+      }
+    } catch (e) {
+      if (fail != null) {
+        fail(e.toString(), 500); // You can customize the status code here
+      }
+    }
   }
 }

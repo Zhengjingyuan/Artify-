@@ -1,37 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: AnimatedCarouselCard(cardList: [
-      ClipRRect(
-        borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
-        child: Image.asset(
-          'lib/assert/art.png',
-          fit: BoxFit.cover,
-        ),
-      ),
-      ClipRRect(
-        borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
-        child: Image.asset(
-          'lib/assert/music.png',
-          fit: BoxFit.cover,
-        ),
-      ),
-      ClipRRect(
-        borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
-        child: Image.asset(
-          'lib/assert/virtual.png',
-          fit: BoxFit.cover,
-        ),
-      ),
-    ])
-  ));
-}
 
 class AnimatedCarouselCard extends StatefulWidget {
   final List<Widget> cardList;
-  AnimatedCarouselCard({required this.cardList});
+  final List<String> titleList;
+  AnimatedCarouselCard({required this.cardList, required this.titleList});
   @override
   _AnimatedCarouselCardState createState() => _AnimatedCarouselCardState();
 }
@@ -40,7 +14,7 @@ class _AnimatedCarouselCardState extends State<AnimatedCarouselCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 260.0,
+      height: 280.0,
       child: CarouselSlider.builder(
         itemCount: widget.cardList.length,
         itemBuilder: (context, index, realIndex) {
@@ -48,7 +22,8 @@ class _AnimatedCarouselCardState extends State<AnimatedCarouselCard> {
           return Stack(
             children: [
               Container(
-                height: 260,
+                height: 280,
+                width: 300,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(32.0),
                   child: item,
@@ -78,7 +53,7 @@ class _AnimatedCarouselCardState extends State<AnimatedCarouselCard> {
                     ),
                   ),
                   child:  Text(
-                    '《Top${index + 1} ${'Title'}》',
+                    '《Top${index + 1} ${widget.titleList[index]}》',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 24.0,

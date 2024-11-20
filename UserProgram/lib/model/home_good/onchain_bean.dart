@@ -33,6 +33,7 @@ class OnChainResponse {
 class OnChainGood {
   String? blockchainAddress;
   String? category;
+  String? authorName;
   int? commentsNum;
   String? createdAt;
   int? creator;
@@ -52,6 +53,7 @@ class OnChainGood {
   OnChainGood({
     this.blockchainAddress,
     this.category,
+    this.authorName,
     this.commentsNum,
     this.createdAt,
     this.creator,
@@ -73,6 +75,7 @@ class OnChainGood {
     return OnChainGood(
       blockchainAddress: json['blockchainAddress'],
       category: json['category'],
+      authorName:json['authorName'],
       commentsNum: json['commentsNum'],
       createdAt: json['createdAt'],
       creator: json['creator'],

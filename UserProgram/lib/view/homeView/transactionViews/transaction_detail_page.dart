@@ -19,6 +19,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
   }
   @override
   Widget build(BuildContext context) {
+
     return  Scaffold(
         body: Container(
           decoration: BoxDecoration(
@@ -53,7 +54,7 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                 right: 0,
                 child: AppBar(
                   centerTitle: true,
-                  title: Text('藏品详情',style: TextStyle(color: Colors.white),),
+                  title: Text('Collection Details',style: TextStyle(color: Colors.white),),
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   leading: IconButton(
@@ -87,22 +88,22 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(color: Colors.white)
                       ),
-                      child: Text('互换',
+                      child: Text('swap',
                         style: TextStyle(color: Colors.white, fontSize: 12),
                       ),
                     ),
 
                     SizedBox(height: 40,),
-                    Text('用户需求',style: TextStyle(color: Colors.white,fontSize: 14),),
+                    Text('User Need',style: TextStyle(color: Colors.white,fontSize: 14),),
                     SizedBox(height: 10,),
                     Image.asset('lib/assert/Line 6.png'),
                     Container(
                       margin: EdgeInsets.fromLTRB(0, 14, 40, 14),
                       height: 80,
-                      child: Text('    自然风景，人文类可换，偏好花鸟鱼虫，其他类型亦可联系，仅限原创作品。',style: TextStyle(color: Colors.white,fontSize: 14)),
+                      child: Text('    Collect rare collection frozen roses, which can be exchanged for rare collections or two collections, limited to original works only.',style: TextStyle(color: Colors.white,fontSize: 14)),
                     ),
                     SizedBox(height: 40,),
-                    Text('联系方式',style: TextStyle(color: Colors.white,fontSize: 14),),
+                    Text('Call me',style: TextStyle(color: Colors.white,fontSize: 14),),
                     SizedBox(height: 10,),
                     Image.asset('lib/assert/Line 6.png'),
                     Container(
@@ -111,11 +112,11 @@ class _TransactionDetailPageState extends State<TransactionDetailPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('email：2554146481@qq.com',style: TextStyle(color: Colors.white,fontSize: 14)),
+                          Text('email：359845122@qq.com',style: TextStyle(color: Colors.white,fontSize: 14)),
                           SizedBox(height: 10,),
-                          Text('phone:  (+86)15455416784',style: TextStyle(color: Colors.white,fontSize: 14)),
+                          Text('phone:  (+86)183665474',style: TextStyle(color: Colors.white,fontSize: 14)),
                           SizedBox(height: 10,),
-                          Text('QQ:  2554146481',style: TextStyle(color: Colors.white,fontSize: 14)),
+                          Text('QQ:  359845122',style: TextStyle(color: Colors.white,fontSize: 14)),
                         ],
                       )
                     )

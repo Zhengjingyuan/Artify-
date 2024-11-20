@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:userprogram/base/components/SwipeCards.dart';
+import 'package:userprogram/base/components/charts.dart';
 import 'package:userprogram/base/components/sss.dart';
 import 'package:userprogram/model/home_good/onchain_bean.dart';
+import 'package:userprogram/util/int_extention.dart';
+import 'package:userprogram/util/size_fit.dart';
 import 'package:userprogram/view/homeView/creatViews/charts_page.dart';
 import 'package:userprogram/view/homeView/creatViews/charts_page2.dart';
 import 'package:userprogram/view/homeView/creatViews/charts_page3.dart';
@@ -16,13 +19,13 @@ List<OnChainGood> onChainGoodList = [
     commentsNum: 10,
     createdAt: "2022-01-01",
     creator: 1,
-    description: "description1",
+    description: "Chilu Mountain",
     hotValue: 100,
     id: 1,
-    imageUrl: "lib/assert/source_5.png",
+    imageUrl: "lib/assert/mountain.jpg",
     isOnChain: true,
-    likeNum: 20,
-    name: "name1",
+    likeNum: 293,
+    name: "Beauty of the East",
     onChainTime: "2022-01-02",
     owner: 1,
     price: 10.5,
@@ -36,13 +39,13 @@ List<OnChainGood> onChainGoodList = [
     commentsNum: 5,
     createdAt: "2022-02-01",
     creator: 2,
-    description: "description2",
+    description: "DOX Cultural Museum",
     hotValue: 50,
     id: 2,
-    imageUrl: "lib/assert/source_6.png",
+    imageUrl: "lib/assert/yinhe.png",
     isOnChain: false,
-    likeNum: 10,
-    name: "name2",
+    likeNum: 324,
+    name: "The Milky Way",
     onChainTime: "2022-02-02",
     owner: 2,
     price: 5.5,
@@ -56,13 +59,13 @@ List<OnChainGood> onChainGoodList = [
     commentsNum: 10,
     createdAt: "2022-01-01",
     creator: 1,
-    description: "description1",
+    description: "Ma Hongwei",
     hotValue: 100,
     id: 1,
-    imageUrl: "lib/assert/source_5.png",
+    imageUrl: "lib/assert/digitmount.png",
     isOnChain: true,
-    likeNum: 20,
-    name: "name1",
+    likeNum: 723,
+    name: "Digital mountains",
     onChainTime: "2022-01-02",
     owner: 1,
     price: 10.5,
@@ -76,13 +79,13 @@ List<OnChainGood> onChainGoodList = [
     commentsNum: 10,
     createdAt: "2022-01-01",
     creator: 1,
-    description: "description1",
+    description: "The Palace Museum",
     hotValue: 100,
     id: 1,
-    imageUrl: "lib/assert/source_1.png",
+    imageUrl: "lib/assert/liujin.png",
     isOnChain: true,
-    likeNum: 20,
-    name: "name1",
+    likeNum: 861,
+    name: "Mountain Gilded",
     onChainTime: "2022-01-02",
     owner: 1,
     price: 10.5,
@@ -103,6 +106,7 @@ class _CreatePage1State extends State<CreatePage1> {
 
   @override
   Widget build(BuildContext context) {
+    HYSizeFit.initialize();
     Widget selectedWidget = Carousel1 (context);
     if (_selectedIndex == 1) {
       selectedWidget = Carousel2(context);
@@ -124,17 +128,17 @@ class _CreatePage1State extends State<CreatePage1> {
                 slivers: [
                   SliverToBoxAdapter(
                     child: Center(
-                      child: Text('NFT热度排行榜', style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold),),
+                      child: Text('NFT Popularity Ranking', style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold),),
                     ),
                   ),
                   SliverToBoxAdapter(
                     child: Row(
                       children: [
-                        SizedBox(width: 80),
-                        _buildNavItem(0, '日榜'),
-                        _buildNavItem(1, '周榜'),
-                        _buildNavItem(2, '月榜'),
-                        SizedBox(width: 80),
+                        SizedBox(width: 80.rpx),
+                        _buildNavItem(0, 'Daily'),
+                        _buildNavItem(1, 'Weekly'),
+                        _buildNavItem(2, 'Monthly'),
+                        SizedBox(width: 60),
                       ],
                     ),
                   ),
@@ -143,16 +147,16 @@ class _CreatePage1State extends State<CreatePage1> {
                   ),
                   SliverToBoxAdapter(
                     child: SizedBox(
-                      height: 25,
+                      height: 25.rpx,
                     ),
                   ),
                   SliverToBoxAdapter(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(width: 10),
+                        SizedBox(width: 10.rpx),
                         Text(
-                          '作品展示',
+                          'Works show',
                           style: TextStyle(
                             color: Colors.white.withOpacity(0.7),
                             fontSize: 22,
@@ -163,7 +167,7 @@ class _CreatePage1State extends State<CreatePage1> {
                   ),
                   SliverToBoxAdapter(
                     child: SizedBox(
-                      height: 25,
+                      height: 25.rpx,
                     )
                   ),
                   _twoColumnListView()
@@ -180,7 +184,7 @@ class _CreatePage1State extends State<CreatePage1> {
   Widget _buildNavItem(int index, String title) {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 2.0), // 增大左右间隙
+        padding: EdgeInsets.symmetric(horizontal: 2.rpx), // 增大左右间隙
         child: GestureDetector(
           onTap: () {
             if (_selectedIndex != index) {
@@ -191,14 +195,14 @@ class _CreatePage1State extends State<CreatePage1> {
           },
           child: Container(
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.rpx),
               child: AnimatedContainer(
                 duration: Duration(milliseconds: 500),
                 decoration: BoxDecoration(
                   color: _selectedIndex == index ? Color(0xFF4E3A74).withOpacity(0.9) : Colors.transparent, // 点击时颜色匹配
                   borderRadius: BorderRadius.circular(12.0),
                   border: _selectedIndex == index
-                      ? Border.all(color: Color(0xFFFC6AFF).withOpacity(0.0), width: 2.0) // 点击时边框匹配
+                      ? Border.all(color: Color(0xFFFC6AFF).withOpacity(0.0), width: 2.rpx) // 点击时边框匹配
                       : null,
                   boxShadow: _selectedIndex == index
                       ? [
@@ -215,7 +219,7 @@ class _CreatePage1State extends State<CreatePage1> {
                   title,
                   style: TextStyle(
                     color: _selectedIndex == index ? Color(0xFFD9AAFF) : Colors.white, // 点击颜色匹配
-                    fontSize: 16.0,
+                    fontSize: 16.rpx,
                   ),
                 ),
               ),
@@ -239,23 +243,34 @@ Widget Carousel1(BuildContext  context)  {
 
     },
     child:  Container(
-        child: CarouselCard(
-          cardList: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
-              child: Image.asset('lib/assert/art.png', fit: BoxFit.cover, ),
-
+        child: AnimatedCarouselCard(cardList: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
+            child: Image.asset(
+              'lib/assert/mountain.jpg',
+              fit: BoxFit.fill,
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
-              child: Image.asset('lib/assert/music.png', fit: BoxFit.cover, ),
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
+            child: Image.asset(
+              'lib/assert/yinhe.png',
+              fit: BoxFit.fill,
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
-              child: Image.asset('lib/assert/virtual.png', fit: BoxFit.cover, ),
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
+            child: Image.asset(
+              'lib/assert/digitmount.png',
+              fit: BoxFit.fill,
             ),
-          ],
-        )
+          ),
+        ],
+            titleList: [
+              'Langli Mountain',
+              'The Milky Way',
+              'Digital Mountain',
+            ]),
     ),
   );
 }
@@ -271,23 +286,34 @@ Widget Carousel2(BuildContext  context)  {
       );
     },
     child: Container(
-        child: CarouselCard(
-          cardList: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
-              child: Image.asset('lib/assert/art.png', fit: BoxFit.cover, ),
-
+        child:  AnimatedCarouselCard(cardList: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
+            child: Image.asset(
+              'lib/assert/dadao.png',
+              fit: BoxFit.cover,
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
-              child: Image.asset('lib/assert/music.png', fit: BoxFit.cover, ),
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
+            child: Image.asset(
+              'lib/assert/liujin.png',
+              fit: BoxFit.cover,
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
-              child: Image.asset('lib/assert/virtual.png', fit: BoxFit.cover, ),
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
+            child: Image.asset(
+              'lib/assert/digitmount.png',
+              fit: BoxFit.cover,
             ),
-          ],
-        )
+          ),
+        ],
+            titleList: [
+              'Avenue',
+              'Green Mountain',
+              'Digital mountain',
+            ]),
     ),
   );
 }
@@ -303,30 +329,41 @@ Widget Carousel3(BuildContext  context)  {
       );
     },
     child: Container(
-        child: CarouselCard(
-          cardList: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
-              child: Image.asset('lib/assert/art.png', fit: BoxFit.cover, ),
-
+        child:AnimatedCarouselCard(cardList: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
+            child: Image.asset(
+              'lib/assert/rose.png',
+              fit: BoxFit.fill,
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
-              child: Image.asset('lib/assert/music.png', fit: BoxFit.cover, ),
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
+            child: Image.asset(
+              'lib/assert/yinhe.png',
+              fit: BoxFit.fill,
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
-              child: Image.asset('lib/assert/virtual.png', fit: BoxFit.cover, ),
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16.0), // 设置圆角半径为16.0
+            child: Image.asset(
+              'lib/assert/liujin.png',
+              fit: BoxFit.fill,
             ),
-          ],
-        )
+          ),
+        ],
+            titleList: [
+              'Frozen Rose',
+              'Milky Way',
+              'Green Mountain',
+            ]),
     ),
   );
 }
 
 Widget _twoColumnListView() {
   return SliverPadding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: EdgeInsets.symmetric(horizontal: 16.rpx),
       sliver: SliverGrid(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -367,18 +404,18 @@ Widget _twoColumnListView() {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16.0),
-                    Text(product.name!, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
-                    SizedBox(height: 8.0),
+                    SizedBox(height: 16.rpx),
+                    Text(product.name!, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                    SizedBox(height: 8.rpx),
                     Text(product.description!, style: TextStyle(fontSize: 14, color: Colors.white)),
-                    SizedBox(height: 10,),
+                    SizedBox(height: 10.rpx,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Image.asset(
                             'lib/assert/iconamoon_heart-thin.png'
                         ),
-                        Text(product.likeNum.toString(),style: TextStyle(fontSize: 12,color: Colors.white),),
+                        Text(product.likeNum.toString(),style: TextStyle(fontSize: 12.rpx,color: Colors.white),),
 
                       ],
                     )
@@ -408,24 +445,24 @@ class ProductItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: Container(
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(8.rpx),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(
               image,
-              height: 120.0,
+              height: 120.rpx,
               width: double.infinity,
               fit: BoxFit.contain,
             ),
-            SizedBox(height: 8.0),
+            SizedBox(height: 8.rpx),
             Text(
               name,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 16.rpx, fontWeight: FontWeight.bold),
             ),
             Text(
               price,
-              style: TextStyle(fontSize: 14, color: Colors.grey),
+              style: TextStyle(fontSize: 14.rpx, color: Colors.grey),
             ),
           ],
         ),

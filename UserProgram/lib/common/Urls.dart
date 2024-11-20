@@ -7,4 +7,7 @@ class Urls{
   static const String getCreatGood="/community/get/collections";
   static const String getMyGood="/collection/get/byOwner";
   static const String prompt='/image/ai/head/string/base64';
+  static const String dailyRank='/zset/daily';
+  static const String weeklyRank='/zset/weekly';
+  static const String monthlyRank='/zset/monthly';
 }
